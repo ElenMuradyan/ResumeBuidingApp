@@ -1,6 +1,6 @@
 import { auth, db } from "@/services/firebase/firebase";
-import { fetchUserProfileInfo } from "@/state-management/slices/userSlice";
-import { RegisterFunctionProps } from "@/types/auth";
+import { fetchUserProfileInfo } from "./userSlice";
+import { RegisterFunctionProps } from "./types";
 import { FIRESTORE_PATH_NAMES, ROUTE_NAMES } from "@/lib/constants";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { stateInterface, userData } from "@/types/userState";
+import { stateInterface, userData } from "./types";
 import { getUser } from "@/services/firebase/databeseActions";
 
 const initialState: stateInterface = {

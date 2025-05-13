@@ -1,6 +1,6 @@
 'use client'
 
-import { fetchUserProfileInfo } from "@/state-management/slices/userSlice";
+import { fetchUserProfileInfo } from "@/features/auth/userSlice";
 import { AppDispatch } from "@/state-management/store";
 import { getIsAuth } from "@/lib/helpers/getIsAuth";
 import { useEffect, useState } from "react";
@@ -13,7 +13,9 @@ export default function AuthLoader({children}: {children: React.ReactNode}) {
 
     useEffect(() => {        
         const getIsAuthenticated = async function () {
-            const { isAuth, uid } = await getIsAuth();            
+            const { isAuth, uid } = await getIsAuth();  
+            console.log(isAuth, uid);
+                      
             if(isAuth){
                 setIsAuth(true);
                 setUid(uid);
