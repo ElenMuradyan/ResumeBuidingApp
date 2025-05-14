@@ -1,8 +1,10 @@
 import { LoadingOutlined } from "@ant-design/icons";
 
-export default function MagicButton ({text, htmlType = 'button', loading}: {text: string, htmlType?: "button" | "submit" | "reset"; loading?: boolean}) {
+export default function MagicButton ({text, htmlType = 'button', loading, onClick, disabled}: {text: string, htmlType?: "button" | "submit" | "reset"; loading?: boolean, onClick?: () => void, disabled?: boolean}) {
   return(
       <button
+      onClick={onClick}
+      disabled={disabled}
       type={htmlType} 
       className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
       >
