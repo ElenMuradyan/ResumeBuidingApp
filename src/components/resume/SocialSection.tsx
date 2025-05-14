@@ -51,7 +51,6 @@ const SocialSection = () => {
             <Form.Item
                 className="formItem"
                 name='instagram'
-                label='Instagram Link'
                 rules={[{
                     required: true,
                     message: 'Enter your Instagram link!'
@@ -62,7 +61,6 @@ const SocialSection = () => {
                 <Form.Item
                 className="formItem"
                 name='facebook'
-                label='Facebook Link'
                 rules={[{
                     required: true,
                     message: 'Enter your Facebook link!'
@@ -73,7 +71,6 @@ const SocialSection = () => {
                 <Form.Item
                 className="formItem"
                 name='twitter'
-                label='Twitter Link'
                 rules={[{
                     required: true,
                     message: 'Enter your Twitter link!'
@@ -84,7 +81,6 @@ const SocialSection = () => {
                 <Form.Item
                 className="formItem"
                 name='linkedin'
-                label='LinkedIn Link'
                 rules={[{
                     required: true,
                     message: 'Enter your LinkedIn link!'

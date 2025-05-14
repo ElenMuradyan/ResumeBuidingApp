@@ -13,7 +13,6 @@ const SkillsSection = () => {
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
     const { resumeId, level } = useParams();
     const [ skillsSection, setSkillsSection ] = useState<string[]>([]);
-console.log(skillsSection);
 
     useEffect(() => {
         if (userData && typeof resumeId === "string") {

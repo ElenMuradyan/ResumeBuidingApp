@@ -1,3 +1,9 @@
+import EducationSection from "@/components/resume/EducationSection";
+import ProfileSection from "@/components/resume/PersonalInfo";
+import ProjectSection from "@/components/resume/ProjectsSection";
+import SkillsSection from "@/components/resume/SkillsSection";
+import SocialSection from "@/components/resume/SocialSection";
+
 export const ROUTE_NAMES = {
     HOME: '/',
     ABOUT: '/about',
@@ -57,3 +63,62 @@ export const options = skills.map((skill, idx) => ({
     value: skill, 
     idx: idx
 }));
+
+export const data = [
+    {
+      title: "Personal Info",
+      content: (
+        <div>
+          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
+            Please provide your personal information below. This helps us personalize your resume and ensure everything looks professional.
+          </p>
+          <ProfileSection />
+        </div>
+      ),
+    },
+    {
+      title: "Education Info",
+      content: (
+        <div>
+          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
+            Add your education background. Include schools, colleges, and your achievements.
+          </p>
+          <EducationSection />
+        </div>
+      ),
+    },
+    {
+      title: "Your Projects",
+      content: (
+        <div>
+          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
+            Highlight your best projects, tech stacks used, and links if available.
+          </p>
+          <ProjectSection />
+        </div>
+      ),
+    },
+    {
+      title: "Your Social Media",
+      content: (
+        <div>
+          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
+            Add links to your professional profiles like LinkedIn, GitHub, etc.
+          </p>
+          <SocialSection />
+        </div>
+      ),
+    },
+    {
+      title: "Your Skills",
+      content: (
+        <div>
+          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
+            List the technologies and tools you're most comfortable with.
+          </p>
+          <SkillsSection />
+        </div>
+      ),
+    },
+  ];
+  
