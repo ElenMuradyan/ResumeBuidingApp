@@ -2,18 +2,17 @@
 
 import { Form } from "antd";
 import { useSelector } from "react-redux";
-import { handleDeleteEducation, handleRealTimeEducationChange } from "@/features/resume/EducationSection/formHandlers";
+import { handleDelete, handleRealTimeEducationChange, handleAdd } from "@/features/resume/EducationSection/formHandlers";
 import { useParams, useRouter } from "next/navigation";
 import { RootState } from "@/state-management/store";
 import { useEffect, useState } from "react";
 import MagicButton from "../ui/magic-button";
 import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
-import { extractEducationArray } from "@/lib/helpers/reduceFormValues";
+import { extractArray } from "@/lib/helpers/reduceFormValues";
 import { formStyles } from "@/styles/constants";
 import { Input } from "../ui/input";
-import { education } from "@/features/resume/EducationSection/types";
-import { handleAddEducation } from "@/features/resume/EducationSection/formHandlers";
+import { education, project } from "@/features/resume/EducationSection/types";
 
 const EducationSection = () => {
     const [ form ] = Form.useForm();
@@ -34,7 +33,7 @@ const EducationSection = () => {
                   const data = snapshot.val();
                   
                   if (data) {
-                    setEducationSection(extractEducationArray(data));
+                    setEducationSection(extractArray<education>(data) as education[]);
                     form.setFieldsValue(data)
                   }
                 });
@@ -104,8 +103,8 @@ const EducationSection = () => {
                         )
                     })
                  } 
-                    <MagicButton onClick={() => handleAddEducation({educationSection, setEducationSection, userData, resumeId, level, form})} text='Add Education'/>
-                    <MagicButton disabled={educationSection.length === 1} onClick={() => handleDeleteEducation({educationSection, setEducationSection, userData, resumeId, level, form})} text="Delete Education"/>
+                    <MagicButton onClick={() => handleAdd<education>({section: educationSection, setSection: setEducationSection, userData, resumeId, level, form})} text='Add Education'/>
+                    <MagicButton disabled={educationSection.length === 1} onClick={() => handleDelete<education>({section: educationSection, setSection: setEducationSection, userData, resumeId, level, form})} text="Delete Education"/>
                     <br/>
             </Form>
         </div>
