@@ -11,12 +11,12 @@ import { options } from "@/lib/constants";
 
 const SkillsSection = () => {
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
-    const { resumeId, level } = useParams();
+    const { resumeId } = useParams();
     const [ skillsSection, setSkillsSection ] = useState<string[]>([]);
 
     useEffect(() => {
         if (userData && typeof resumeId === "string") {
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/${level}`);
+            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SkillsSection`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
                 const data = snapshot.val();
                 
@@ -32,7 +32,7 @@ const SkillsSection = () => {
     const handleSelect = async (val: string[]) => {
         setSkillsSection(val);
         if(userData){
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/${level}`);
+            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SkillsSection`);
             await update(resumeRef, {skills: val});
         }
     }

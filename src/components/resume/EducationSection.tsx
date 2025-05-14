@@ -17,18 +17,18 @@ import { education, project } from "@/features/resume/EducationSection/types";
 const EducationSection = () => {
     const [ form ] = Form.useForm();
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
-    const { resumeId, level } = useParams();
+    const { resumeId } = useParams();
     const [ educationSection, setEducationSection ] = useState<education[]>([{                
         courseName: "",
-        completitionYear: 0,
+        completitionYear: '',
         collegeSchool: "",
-        percentage: 0
+        percentage: ''
     }]);
     const { push } = useRouter();
 
         useEffect(() => {
             if (userData && typeof resumeId === "string") {
-                const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/${level}`);
+                const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/EducationSection`);
                 const unsubscribe = onValue(resumeRef, (snapshot) => {
                   const data = snapshot.val();
                   
@@ -46,7 +46,7 @@ const EducationSection = () => {
         <>
         <div>
             <Form form={form} 
-            onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level, resumeId, userData, push})}
+            onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'EducationSection', resumeId, userData, push})}
             layout="vertical" 
             style={formStyles}
             >
@@ -97,14 +97,14 @@ const EducationSection = () => {
                                     message: 'Enter the Percentage!'
                                 }]}
                                 >
-                                    <Input className="Input" placeholder="Percentage" type="text"/>
+                                    <Input className="Input" placeholder="Percentage" type="number"/>
                                 </Form.Item>
                             </div>
                         )
                     })
                  } 
-                    <MagicButton onClick={() => handleAdd<education>({section: educationSection, setSection: setEducationSection, userData, resumeId, level, form})} text='Add Education'/>
-                    <MagicButton disabled={educationSection.length === 1} onClick={() => handleDelete<education>({section: educationSection, setSection: setEducationSection, userData, resumeId, level, form})} text="Delete Education"/>
+                    <MagicButton onClick={() => handleAdd<education>({section: educationSection, setSection: setEducationSection, userData, resumeId, level: 'EducationSection', form})} text='Add Education'/>
+                    <MagicButton disabled={educationSection.length === 1} onClick={() => handleDelete<education>({section: educationSection, setSection: setEducationSection, userData, resumeId, level: 'EducationSection', form})} text="Delete Education"/>
                     <br/>
             </Form>
         </div>

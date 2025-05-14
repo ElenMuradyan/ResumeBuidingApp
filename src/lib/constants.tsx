@@ -1,4 +1,5 @@
 import EducationSection from "@/components/resume/EducationSection";
+import ExperienceSection from "@/components/resume/ExperienceSection";
 import ProfileSection from "@/components/resume/PersonalInfo";
 import ProjectSection from "@/components/resume/ProjectsSection";
 import SkillsSection from "@/components/resume/SkillsSection";
@@ -87,6 +88,17 @@ export const data = [
         </div>
       ),
     },
+    {
+        title: "Experience Info",
+        content: (
+          <div>
+            <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
+              Add your professional experience. Include job titles, companies, durations, and key responsibilities.
+            </p>
+            <ExperienceSection />
+          </div>
+        ),
+      },  
     {
       title: "Your Projects",
       content: (

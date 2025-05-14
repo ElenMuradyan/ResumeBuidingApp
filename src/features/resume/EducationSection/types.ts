@@ -14,9 +14,9 @@ export interface HandleRealTimeChangeParams {
 
   export interface education {
     courseName: string,
-    completitionYear: number,
+    completitionYear: number | string,
     collegeSchool: string,
-    percentage: number
+    percentage: number |string
 }
 
 export interface handleAddInterface<T> {
@@ -34,3 +34,10 @@ export interface project {
     description: string,
     link: string
 }
+
+export type experience = {
+    position: string;
+    company: string;
+    duration: string; 
+    description: string;
+};

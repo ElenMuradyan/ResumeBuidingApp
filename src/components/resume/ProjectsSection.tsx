@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import MagicButton from "../ui/magic-button";
 import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
-import { formItemStyle, formStyles } from "@/styles/constants";
+import { formStyles } from "@/styles/constants";
 import { Input } from "../ui/input";
 import { project } from "@/features/resume/EducationSection/types";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
@@ -17,7 +17,7 @@ import { extractArray } from "@/lib/helpers/reduceFormValues";
 const ProjectSection = () => {
     const [ form ] = Form.useForm();
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
-    const { resumeId, level } = useParams();
+    const { resumeId } = useParams();
     const [ miniProjects, setMiniProjects ] = useState<project[]>([{                
         projectName: "",
         description: '',
@@ -28,7 +28,7 @@ const ProjectSection = () => {
 
         useEffect(() => {
             if (userData && typeof resumeId === "string") {
-                const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/${level}`);
+                const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/ProjectSection`);
                 const unsubscribe = onValue(resumeRef, (snapshot) => {
                   const data = snapshot.val();
                   
@@ -44,7 +44,7 @@ const ProjectSection = () => {
     
     return(
         <Form form={form} 
-        onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level, resumeId, userData, push})}
+        onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'ProjectSection', resumeId, userData, push})}
         layout="vertical" 
         style={formStyles}
         >
@@ -100,8 +100,8 @@ const ProjectSection = () => {
                         )
                     })
                  } 
-                    <MagicButton onClick={() => handleAdd<project>({section: miniProjects, setSection: setMiniProjects, userData, resumeId, level, form})} text='Add Education'/>
-                    <MagicButton disabled={miniProjects.length === 1} onClick={() => handleDelete<project>({section: miniProjects, setSection: setMiniProjects, userData, resumeId, level, form})} text="Delete Education"/>
+                    <MagicButton onClick={() => handleAdd<project>({section: miniProjects, setSection: setMiniProjects, userData, resumeId, level: 'ProjectSection', form})} text='Add Project'/>
+                    <MagicButton disabled={miniProjects.length === 1} onClick={() => handleDelete<project>({section: miniProjects, setSection: setMiniProjects, userData, resumeId, level: 'ProjectSection', form})} text="Delete Project"/>
             </Form>
     )
 };

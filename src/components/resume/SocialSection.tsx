@@ -20,12 +20,12 @@ const SocialSection = () => {
         linkedin: ''
     });
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
-    const { resumeId, level } = useParams();
+    const { resumeId } = useParams();
     const { push } = useRouter();
 
     useEffect(() => {
         if (userData) {
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/${level}`);
+            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SkillsSection`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
               const data = snapshot.val();
               if (data) {
@@ -41,12 +41,12 @@ const SocialSection = () => {
     return(
         <Form 
         form={form}
-        onFieldsChange={(_, allFields) => userData && handleRealTimeChange({allFields, level, resumeId, userData, push})}
+        onFieldsChange={(_, allFields) => userData && handleRealTimeChange({allFields, level: 'SkillsSection', resumeId, userData, push})}
         initialValues={socialSection}
         style={formStyles}
         layout="vertical"
         > 
-            <h1 className="text-white text-2xl">ADD YOUR PERSONAL INFO</h1>
+            <h1 className="text-white text-2xl">ADD YOUR SOCIAL INFO</h1>
             
             <Form.Item
                 className="formItem"
