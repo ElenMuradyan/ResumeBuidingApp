@@ -3,20 +3,20 @@ import { userData } from "@/features/auth/types";
 import { FieldData } from "rc-field-form/lib/interface";
 import { FormInstance } from "rc-field-form";
 import { Dispatch, SetStateAction } from "react";
+import { addObjects } from "@/lib/constants";
 
 export interface HandleRealTimeChangeParams {
     allFields: FieldData[];
     level: ParamValue;
     resumeId: ParamValue;
     userData: userData;
-    push: (url: string) => void;
   }
 
   export interface education {
     courseName: string,
     completitionYear: number | string,
     collegeSchool: string,
-    percentage: number |string
+    percentage: number | string
 }
 
 export interface handleAddInterface<T> {
@@ -41,3 +41,5 @@ export type experience = {
     duration: string; 
     description: string;
 };
+
+export type levelType = keyof typeof addObjects;

@@ -10,16 +10,9 @@ export const handleRealTimeChange = async ({
     level,
     resumeId,
     userData,
-    push,
   }: HandleRealTimeChangeParams) => {
     const data = reduceFormValues(allFields);
 
-    if(resumeId === 'newResume' && typeof level === 'string'){
-        generateResumeId({level, push});
-        const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/${level}`);
-        await update(resumeRef, data);
-        return;
-    }
     if(userData && typeof resumeId === 'string' && typeof level === 'string'){
         try{
             const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/${level}`);

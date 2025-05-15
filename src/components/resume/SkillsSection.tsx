@@ -1,6 +1,6 @@
 'use client'
 
-import { Form, Select } from "antd";
+import { Select } from "antd";
 import { useSelector } from "react-redux";
 import { useParams } from "next/navigation";
 import { RootState } from "@/state-management/store";

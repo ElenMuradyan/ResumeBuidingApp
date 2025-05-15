@@ -1,7 +1,7 @@
 import { education, project } from "@/features/resume/EducationSection/types";
 import { FormInstance } from "rc-field-form";
 import { FieldData } from "rc-field-form/lib/interface";
-import { isEducation, isProject } from "./typeDefine";
+import { isEducation, isExperoence, isProject } from "./typeDefine";
 
 export function reduceFormValues (allFields: FieldData[]) {
     const data = allFields.reduce((acc: Record<string, any>, field: FieldData) => {
@@ -24,10 +24,16 @@ export function extractObject <T extends object>(data: T[], form?: FormInstance)
             acc[`techStack${idx}`] = item.techStack;
             acc[`description${idx}`] = item.description;
             acc[`link${idx}`] = item.link;    
+        }else if(isExperoence(item)){
+            acc[`position${idx}`] = item.position;
+            acc[`company${idx}`] = item.company;
+            acc[`description${idx}`] = item.description;
+            acc[`duration${idx}`] = item.duration;    
         }
 
         return acc;
     }, {});
+console.log(section);
 
     form && form.setFieldsValue(section);
     return section;

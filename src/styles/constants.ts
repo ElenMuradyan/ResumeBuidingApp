@@ -9,7 +9,6 @@ export const formStyles:CSSProperties = {
     borderRadius: 30,
     padding: 30,
     overflow: "hidden",
-    width: 500,
     transition: "0.2s 0.7s ease-in-out",
 };
   
@@ -32,10 +31,4 @@ export const formItemStyle = {
     height: '55px',
     margin: '10px 0',
     borderRadius: '55px',
-    gridTemplateColumns: '15% 85%',
-    padding: '0 .4rem',
-}
-
-export const flex = {
-width: '300px',
 }

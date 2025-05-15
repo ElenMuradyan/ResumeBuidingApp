@@ -1,4 +1,4 @@
-import { education, project } from "@/features/resume/EducationSection/types";
+import { education, experience, project } from "@/features/resume/EducationSection/types";
 
 export function isEducation(item: any): item is education {
     return (
@@ -15,6 +15,14 @@ export function isProject(item: any): item is project {
       typeof item.techStack === 'string' &&
       typeof item.description === 'string' &&
       typeof item.link === 'string'
+    );
+  }
+  export function isExperoence(item: any): item is experience {
+    return (
+      typeof item.position === 'string' &&
+      typeof item.company === 'string' &&
+      typeof item.duration === 'string' &&
+      typeof item.description === 'string'
     );
   }
   

@@ -1,7 +1,8 @@
 import { realTimeDb } from "@/services/firebase/firebase";
 import { ref, set, update } from "firebase/database";
-import { education, handleAddInterface, HandleRealTimeChangeParams, project } from "./types";
+import { handleAddInterface, HandleRealTimeChangeParams, levelType } from "./types";
 import { extractObject, reduceFormValues } from "@/lib/helpers/reduceFormValues";
+import { addObjects } from "@/lib/constants";
 
 
 export const handleRealTimeEducationChange = async ({
@@ -24,17 +25,7 @@ export const handleRealTimeEducationChange = async ({
 }
     
 export const handleAdd = <T extends object>({section, setSection, userData, resumeId, form, level}: handleAddInterface<T>) => {
-    const newSectionItem = level === 'EducationSection' ? {
-        courseName: "",
-        completitionYear: 0,
-        collegeSchool: "",
-        percentage: 0
-    } : {
-        projectName: "",
-        techStack: '',
-        description: "",
-        link: ''
-    };
+    const newSectionItem = addObjects[level as levelType] as T;
 
     const updatedSection = [ ...section, newSectionItem ] as T[];
     const data = extractObject<T>(updatedSection, form);

@@ -8,11 +8,11 @@ import { handleImageUpload } from "@/services/supabase/uploadService";
 import { UploadRequestOption } from "rc-upload/lib/interface";
 import { RootState } from "@/state-management/store";
 import { onValue, ref, update } from "firebase/database";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { realTimeDb } from "@/services/firebase/firebase";
 import ImgUpload from "../ImageUpload";
-import { formStyles } from "@/styles/constants";
+import { formItemStyle, formStyles } from "@/styles/constants";
 import handleDelete, { handleRealTimeChange } from "@/features/resume/PersonalSection/formHandlers";
 
 const ProfileSection = () => {
@@ -22,7 +22,6 @@ const ProfileSection = () => {
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
     const [ imgUrl, setImgUrl ] = useState<string>('');
     const { resumeId } = useParams();
-    const { push } = useRouter();
 
     useEffect(() => {
         if (userData && typeof resumeId === "string") {
@@ -65,7 +64,7 @@ const ProfileSection = () => {
     return(
         <Form 
         form={form}
-        onFieldsChange={(_, allFields) => userData && handleRealTimeChange({allFields, level: 'ProfileSection', resumeId, userData, push})}
+        onFieldsChange={(_, allFields) => userData && handleRealTimeChange({allFields, level: 'ProfileSection', resumeId, userData})}
         initialValues={profileData}
         style={formStyles}
         layout="vertical"
@@ -78,6 +77,7 @@ const ProfileSection = () => {
                     required: true,
                     message: 'Please enter summary of the resume'
                 }]}
+                style={formItemStyle}
                 >
                     <Input placeholder="Summary" type='text'/>
             </Form.Item>
@@ -89,6 +89,7 @@ const ProfileSection = () => {
                     required: true,
                     message: 'Please enter your first name'
                 }]}
+                style={formItemStyle}
                 >
                     <Input placeholder="First Name" type='text'/>
             </Form.Item>
@@ -100,6 +101,7 @@ const ProfileSection = () => {
                     required: true,
                     message: 'Please enter your last name'
                 }]}
+                style={formItemStyle}
                 >
                     <Input placeholder="Last Name" type='text'></Input>
                 </Form.Item>
@@ -111,6 +113,7 @@ const ProfileSection = () => {
                     required: true,
                     message: 'Please enter your profession'
                 }]}
+                style={formItemStyle}
                 >
                     <Input placeholder="Profession" type='text'/>
             </Form.Item>
@@ -126,6 +129,7 @@ const ProfileSection = () => {
                     validator: PhoneNumberValidation,
                 }
                 ]}
+                style={formItemStyle}
                 >
                     <Input placeholder="Phone Number" type='text'></Input>
                 </Form.Item>
@@ -136,6 +140,7 @@ const ProfileSection = () => {
                         required: true,
                         message: 'Please enter your adress'
                     }]}
+                    style={formItemStyle}
                     >
                         <Input placeholder="Adress" type='text'></Input>
                     </Form.Item>

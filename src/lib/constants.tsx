@@ -1,9 +1,11 @@
 import EducationSection from "@/components/resume/EducationSection";
 import ExperienceSection from "@/components/resume/ExperienceSection";
 import ProfileSection from "@/components/resume/PersonalInfo";
-import ProjectSection from "@/components/resume/ProjectsSection";
+import ProjectSection from "@/components/resume/ProjectSection";
+import { ResumePreview } from "@/components/resume/ResumePreview";
 import SkillsSection from "@/components/resume/SkillsSection";
 import SocialSection from "@/components/resume/SocialSection";
+import { resume } from "@/features/resume/types";
 
 export const ROUTE_NAMES = {
     HOME: '/',
@@ -65,7 +67,7 @@ export const options = skills.map((skill, idx) => ({
     idx: idx
 }));
 
-export const data = [
+export const data = (resume: resume | null) => [
     {
       title: "Personal Info",
       content: (
@@ -132,5 +134,36 @@ export const data = [
         </div>
       ),
     },
+    {
+        title: "Your Resume",
+        content: (
+          <div>
+            {
+                resume && <ResumePreview data={resume} />
+            }
+          </div>
+        ),
+      },  
   ];
   
+
+export const addObjects = {
+    EducationSection: {
+        courseName: '',
+        completitionYear: '',
+        collegeSchool: '',
+        percentage: ''
+    },
+    ProjectsSection: {
+        projectName: '',
+        techStack: '',
+        description: '',
+        link: ''
+    },
+    ExperienceSection: {
+        position: '',
+        company: '',
+        duration: '',
+        description: ''
+    }
+}

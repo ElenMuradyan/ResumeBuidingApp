@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import MagicButton from "../ui/magic-button";
 import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
-import { formStyles } from "@/styles/constants";
+import { formItemStyle, formStyles } from "@/styles/constants";
 import { Input } from "../ui/input";
 import { project } from "@/features/resume/EducationSection/types";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
@@ -24,7 +24,6 @@ const ProjectSection = () => {
         link: "",
         techStack: ''
     }]);
-    const { push } = useRouter();
 
         useEffect(() => {
             if (userData && typeof resumeId === "string") {
@@ -43,23 +42,26 @@ const ProjectSection = () => {
         }, [userData, resumeId]);
     
     return(
-        <Form form={form} 
-        onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'ProjectSection', resumeId, userData, push})}
+        <Form 
+        form={form} 
+        onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'ProjectSection', resumeId, userData})}
         layout="vertical" 
         style={formStyles}
         >
+            <h1 className="text-white text-2xl">ADD YOUR PROJECTS</h1>
             {
                     miniProjects.map((project, idx)=> {
                         return(
-                            <div key={idx}>
+                            <div style={{width: '100%'}} key={idx}>
                              <Form.Item
-                             className="formItem"
+                            className="formItem"
                             name={`projectName${idx}`}
                             initialValue={project.projectName}
                             rules={[{
                                 required:true,
                                 message: 'Enter Project Name!'
                             }]}
+                            style={formItemStyle}
                             >
                                 <Input className="Input" placeholder="Project Name" type="text"/>
                             </Form.Item>
@@ -71,6 +73,7 @@ const ProjectSection = () => {
                                 required:true,
                                 message: 'Enter the Tech Stack!'
                             }]}
+                            style={formItemStyle}
                             >
                                 <Input className="Input" placeholder="Tech Stack" type="text"/>
                             </Form.Item>
@@ -82,6 +85,7 @@ const ProjectSection = () => {
                                 required:true,
                                 message: 'Enter the Description!'
                             }]}
+                            style={formItemStyle}
                             >
                                 <Input className="Input" placeholder="Description" type="text"/>
                                 </Form.Item>
@@ -92,10 +96,10 @@ const ProjectSection = () => {
                                     required:true,
                                     message: 'Enter the Link!'
                                 }]}
+                                style={formItemStyle}
                                 >
                                 <Input className="Input" placeholder="Link" type="text"/>
                                 </Form.Item>
-
                             </div>
                         )
                     })

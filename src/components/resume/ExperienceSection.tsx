@@ -3,16 +3,16 @@
 import { Form } from "antd";
 import { useSelector } from "react-redux";
 import { handleDelete, handleRealTimeEducationChange, handleAdd } from "@/features/resume/EducationSection/formHandlers";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { RootState } from "@/state-management/store";
 import { useEffect, useState } from "react";
 import MagicButton from "../ui/magic-button";
 import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
-import { formStyles } from "@/styles/constants";
+import { formItemStyle, formStyles } from "@/styles/constants";
 import { Input } from "../ui/input";
-import { education, experience } from "@/features/resume/EducationSection/types";
+import { experience } from "@/features/resume/EducationSection/types";
 
 const ExperienceSection = () => {
     const [ form ] = Form.useForm();
@@ -24,7 +24,6 @@ const ExperienceSection = () => {
         duration: '',
         description: '',
           }]);
-    const { push } = useRouter();
 
         useEffect(() => {
             if (userData && typeof resumeId === "string") {
@@ -43,19 +42,18 @@ const ExperienceSection = () => {
         }, [userData, resumeId]);
     
     return(
-        <>
-        <div>
             <Form form={form} 
-            onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'ExperienceSection', resumeId, userData, push})}
+            onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'ExperienceSection', resumeId, userData})}
             layout="vertical" 
             style={formStyles}
             >
-                <h1 className="text-white text-2xl">Add your Education Details</h1>
+                <h1 className="text-white text-2xl">Add your Experience Details</h1>
                 {
                     experienceSection.map((experience, idx)=> {                        
                         return(
-                            <div key={idx}>
+                            <div style={{width: '100%'}} key={idx}>
                             <Form.Item
+                            style={formItemStyle}
                             className="formItem"
                             name={`position${idx}`}
                             initialValue={experience.position}
@@ -70,6 +68,7 @@ const ExperienceSection = () => {
                             </Form.Item>
 
                             <Form.Item
+                            style={formItemStyle}
                             className="formItem"
                             name={`company${idx}`}
                             initialValue={experience.company}
@@ -84,6 +83,7 @@ const ExperienceSection = () => {
                             </Form.Item>
 
                             <Form.Item
+                            style={formItemStyle}
                             className="formItem"
                             name={`duration${idx}`}
                             initialValue={experience.duration}
@@ -98,6 +98,7 @@ const ExperienceSection = () => {
                             </Form.Item>
 
                             <Form.Item
+                            style={formItemStyle}
                             className="formItem"
                             name={`description${idx}`}
                             initialValue={experience.description}
@@ -118,8 +119,6 @@ const ExperienceSection = () => {
                     <MagicButton disabled={experienceSection.length === 1} onClick={() => handleDelete<experience>({section: experienceSection, setSection: setExperienceSection, userData, resumeId, level: 'ExperienceSection', form})} text="Delete Education"/>
                     <br/>
             </Form>
-        </div>
-        </>
     )
 };
 

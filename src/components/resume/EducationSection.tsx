@@ -3,16 +3,16 @@
 import { Form } from "antd";
 import { useSelector } from "react-redux";
 import { handleDelete, handleRealTimeEducationChange, handleAdd } from "@/features/resume/EducationSection/formHandlers";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { RootState } from "@/state-management/store";
 import { useEffect, useState } from "react";
 import MagicButton from "../ui/magic-button";
 import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
-import { formStyles } from "@/styles/constants";
+import { formItemStyle, formStyles } from "@/styles/constants";
 import { Input } from "../ui/input";
-import { education, project } from "@/features/resume/EducationSection/types";
+import { education } from "@/features/resume/EducationSection/types";
 
 const EducationSection = () => {
     const [ form ] = Form.useForm();
@@ -24,7 +24,6 @@ const EducationSection = () => {
         collegeSchool: "",
         percentage: ''
     }]);
-    const { push } = useRouter();
 
         useEffect(() => {
             if (userData && typeof resumeId === "string") {
@@ -42,11 +41,13 @@ const EducationSection = () => {
               }        
         }, [userData, resumeId]);
     
+        useEffect(() => {console.log(educationSection);
+        }, [educationSection]);
+
     return(
-        <>
-        <div>
-            <Form form={form} 
-            onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'EducationSection', resumeId, userData, push})}
+            <Form 
+            form={form} 
+            onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'EducationSection', resumeId, userData})}
             layout="vertical" 
             style={formStyles}
             >
@@ -54,9 +55,10 @@ const EducationSection = () => {
                 {
                     educationSection.map((education, idx)=> {                        
                         return(
-                            <div key={idx}>
+                            <div style={{width: '100%'}} key={idx}>
                              <Form.Item
-                             className="formItem"
+                            style={formItemStyle}
+                            className="formItem"
                             name={`courseName${idx}`}
                             initialValue={education.courseName}
                             rules={[{
@@ -67,9 +69,10 @@ const EducationSection = () => {
                                 <Input className="Input" placeholder="Course Name" type="text"/>
                             </Form.Item>
                             <Form.Item
+                            style={formItemStyle}
                             className="formItem"
                             name={`completitionYear${idx}`}
-                            initialValue={Number(education.completitionYear)}
+                            initialValue={education.completitionYear}
                             rules={[{
                                 required:true,
                                 message: 'Enter the Completition Year!'
@@ -78,17 +81,19 @@ const EducationSection = () => {
                                 <Input className="Input" placeholder="Completition Year" type="number"/>
                             </Form.Item>
                                 <Form.Item
-                                className="formItem"
+                            className="formItem"
                             name={`collegeSchool${idx}`}
                             initialValue={education.collegeSchool}
                             rules={[{
                                 required:true,
                                 message: 'Enter the College or School!'
                             }]}
+                            style={formItemStyle}
                             >
                                 <Input className="Input" placeholder="College/School" type="text"/>
                             </Form.Item>
                                 <Form.Item
+                                style={formItemStyle}
                                 className="formItem"
                                 name={`percentage${idx}`}
                                 initialValue={education.percentage}
@@ -107,8 +112,6 @@ const EducationSection = () => {
                     <MagicButton disabled={educationSection.length === 1} onClick={() => handleDelete<education>({section: educationSection, setSection: setEducationSection, userData, resumeId, level: 'EducationSection', form})} text="Delete Education"/>
                     <br/>
             </Form>
-        </div>
-        </>
     )
 };
 

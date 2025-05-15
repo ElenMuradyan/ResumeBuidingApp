@@ -8,7 +8,7 @@ import { onValue, ref } from "firebase/database";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { realTimeDb } from "@/services/firebase/firebase";
-import { formStyles } from "@/styles/constants";
+import { formItemStyle, formStyles } from "@/styles/constants";
 import { handleRealTimeChange } from "@/features/resume/PersonalSection/formHandlers";
 
 const SocialSection = () => {
@@ -21,11 +21,10 @@ const SocialSection = () => {
     });
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
     const { resumeId } = useParams();
-    const { push } = useRouter();
 
     useEffect(() => {
         if (userData) {
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SkillsSection`);
+            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SocialSection`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
               const data = snapshot.val();
               if (data) {
@@ -41,7 +40,7 @@ const SocialSection = () => {
     return(
         <Form 
         form={form}
-        onFieldsChange={(_, allFields) => userData && handleRealTimeChange({allFields, level: 'SkillsSection', resumeId, userData, push})}
+        onFieldsChange={(_, allFields) => userData && handleRealTimeChange({allFields, level: 'SocialSection', resumeId, userData})}
         initialValues={socialSection}
         style={formStyles}
         layout="vertical"
@@ -55,6 +54,7 @@ const SocialSection = () => {
                     required: true,
                     message: 'Enter your Instagram link!'
                 }]}
+                style={formItemStyle}
                 >
                     <Input className="Input" placeholder='Instagram Link' type='text'></Input>
                 </Form.Item>
@@ -65,6 +65,7 @@ const SocialSection = () => {
                     required: true,
                     message: 'Enter your Facebook link!'
                 }]}
+                style={formItemStyle}
                 >
                     <Input className="Input" placeholder='Facebook Link' type='text'></Input>
                 </Form.Item>
@@ -75,6 +76,7 @@ const SocialSection = () => {
                     required: true,
                     message: 'Enter your Twitter link!'
                 }]}
+                style={formItemStyle}
                 >
                     <Input className="Input" placeholder='Twitter Link' type='text'></Input>
                 </Form.Item>
@@ -85,6 +87,7 @@ const SocialSection = () => {
                     required: true,
                     message: 'Enter your LinkedIn link!'
                 }]}
+                style={formItemStyle}
                 >
                     <Input className="Input" placeholder='LinkedIn Link' type='text'></Input>
                 </Form.Item>
