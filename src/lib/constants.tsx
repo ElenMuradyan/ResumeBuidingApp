@@ -1,3 +1,4 @@
+import DownloadButton from "@/components/resume/DownloadButton";
 import EducationSection from "@/components/resume/EducationSection";
 import ExperienceSection from "@/components/resume/ExperienceSection";
 import ProfileSection from "@/components/resume/PersonalInfo";
@@ -139,7 +140,11 @@ export const data = (resume: resume | null) => [
         content: (
           <div>
             {
-                resume && <ResumePreview data={resume} />
+                resume && 
+                <>
+                <ResumePreview data={resume} />
+                <DownloadButton data={resume}/>
+                </>
             }
           </div>
         ),
