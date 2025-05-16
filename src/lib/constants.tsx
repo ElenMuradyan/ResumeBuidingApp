@@ -8,7 +8,7 @@ import SkillsSection from "@/components/resume/SkillsSection";
 import SocialSection from "@/components/resume/SocialSection";
 import { ThemeSelector } from "@/components/ThemeSelector";
 import { resume } from "@/features/resume/types";
-
+import TextSpan from "@/components/ui/textSpan";
 export const ROUTE_NAMES = {
     HOME: '/',
     ABOUT: '/about',
@@ -74,9 +74,7 @@ export const data = (resume: resume | null) => [
       title: "Personal Info",
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Please provide your personal information below. This helps us personalize your resume and ensure everything looks professional.
-          </p>
+          <TextSpan className="mb-4 text-xs font-normal" words='Please provide your personal information below. This helps us personalize your resume and ensure everything looks professional.'/>
           <ProfileSection />
         </div>
       ),
@@ -85,10 +83,8 @@ export const data = (resume: resume | null) => [
       title: "Education Info",
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Add your education background. Include schools, colleges, and your achievements.
-          </p>
-          <EducationSection />
+        <TextSpan className="mb-4 text-xs font-normal" words='Add your education background. Include schools, colleges, and your achievements.'/>
+        <EducationSection />
         </div>
       ),
     },
@@ -96,9 +92,7 @@ export const data = (resume: resume | null) => [
         title: "Experience Info",
         content: (
           <div>
-            <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-              Add your professional experience. Include job titles, companies, durations, and key responsibilities.
-            </p>
+            <TextSpan className="mb-4 text-xs font-normal" words='Add your professional experience. Include job titles, companies, durations, and key responsibilities.'/>
             <ExperienceSection />
           </div>
         ),
@@ -107,9 +101,7 @@ export const data = (resume: resume | null) => [
       title: "Your Projects",
       content: (
         <div>
-          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Highlight your best projects, tech stacks used, and links if available.
-          </p>
+          <TextSpan className="mb-4 text-xs font-normal" words='Highlight your best projects, tech stacks used, and links if available.'/>
           <ProjectSection />
         </div>
       ),
@@ -118,9 +110,7 @@ export const data = (resume: resume | null) => [
       title: "Your Social Media",
       content: (
         <div>
-          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Add links to your professional profiles like LinkedIn, GitHub, etc.
-          </p>
+          <TextSpan className="mb-4 text-xs font-normal" words='Add links to your professional profiles like LinkedIn, GitHub, etc.'/>
           <SocialSection />
         </div>
       ),
@@ -129,9 +119,7 @@ export const data = (resume: resume | null) => [
       title: "Your Skills",
       content: (
         <div>
-          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            List the technologies and tools you're most comfortable with.
-          </p>
+          <TextSpan className="mb-4 text-xs font-normal" words="List the technologies and tools you're most comfortable with."/>
           <SkillsSection />
         </div>
       ),
@@ -143,6 +131,7 @@ export const data = (resume: resume | null) => [
             {
                 resume && 
                 <>
+                <TextSpan className="mb-4 text-xs font-normal" words="View your resume changing themes and download PDF file." />
                 <ThemeSelector />
                 <ResumePreview data={resume} />
                 <DownloadButton themeColors={themes[resume.theme || 'classic']} data={resume}/>

@@ -43,7 +43,7 @@ export function TimelineDemo() {
 
 
   return (
-    <div className="relative w-full overflow-clip">
+    <div className="relative h-[auto] w-full overflow-clip">
       <Timeline data={data(resume)} />
     </div>
   );

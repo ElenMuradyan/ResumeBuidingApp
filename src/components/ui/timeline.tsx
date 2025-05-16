@@ -1,6 +1,5 @@
 "use client";
 import {
-  useMotionValueEvent,
   useScroll,
   useTransform,
   motion,
@@ -19,15 +18,20 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
+    const updateHeight = () => {
+      if (ref.current) {
+        setHeight(ref.current.offsetHeight+100);
+      }
+    };
+  
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [data]);
 
-  const { scrollYProgress } = useScroll({
+    const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 10%", "end 100%"],
+    offset: ["start end", "end start"],
   });
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
@@ -59,7 +63,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
             <div className="relative pl-20 pr-4 md:pl-4 w-full flex items-center">
             <div className="w-full">
-                <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
+                <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500">
                 {item.title}
                 </h3>
                 {item.content}
