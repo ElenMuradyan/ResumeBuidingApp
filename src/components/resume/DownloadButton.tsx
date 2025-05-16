@@ -1,10 +1,11 @@
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import ResumePDF from "./ResumePDF";
 import { resume } from "@/features/resume/types";
+import { themeType } from "@/types/resumeThemeTypes";
 
-const DownloadButton = ({ data }: { data: resume }) => (
+const DownloadButton = ({ data, themeColors }: { data: resume, themeColors: themeType}) => (
   <PDFDownloadLink
-    document={<ResumePDF data={data} />}
+    document={<ResumePDF themeColors={themeColors} data={data} />}
     fileName="resume.pdf"
   >
     {({ loading }) => (

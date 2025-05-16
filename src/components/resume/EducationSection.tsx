@@ -41,9 +41,6 @@ const EducationSection = () => {
               }        
         }, [userData, resumeId]);
     
-        useEffect(() => {console.log(educationSection);
-        }, [educationSection]);
-
     return(
             <Form 
             form={form} 

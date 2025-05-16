@@ -8,18 +8,9 @@ import {
     Link,
   } from "@react-pdf/renderer";
   import { resume } from "@/features/resume/types";
+import { themeType } from "@/types/resumeThemeTypes";
   
-  const styles = StyleSheet.create({
-    page: { padding: 30, fontSize: 12, fontFamily: "Times-Roman" },
-    section: { marginBottom: 12 },
-    heading: { fontSize: 16, fontWeight: "bold", marginBottom: 4, borderBottom: 1 },
-    name: { fontSize: 20, fontWeight: "bold" },
-    image: { width: 80, height: 80, borderRadius: 40, marginRight: 10 },
-    row: { flexDirection: "row", alignItems: "center", marginBottom: 12 },
-    link: { color: "blue", textDecoration: "underline" },
-  });
-  
-const ResumePDF = ({ data }: { data: resume }) => {
+const ResumePDF = ({ data, themeColors }: { data: resume, themeColors: themeType }) => {
     const {
       ProfileSection,
       ProjectSection,
@@ -29,6 +20,52 @@ const ResumePDF = ({ data }: { data: resume }) => {
       ExperienceSection,
     } = data;
   
+    const styles = StyleSheet.create({
+      page: {
+        fontSize: 12,
+        fontFamily: "Times-Roman",
+        backgroundColor: 'white',
+        color: 'black',
+      },
+      section: {
+        margin: 20,
+        marginBottom: 12,
+        paddingBottom: 6,
+        borderBottom: `1px solid ${themeColors.accent}`,
+      },
+      heading: {
+        fontSize: 16,
+        fontWeight: "bold",
+        marginBottom: 4,
+        color: themeColors.accent,
+      },
+      name: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: themeColors.accent,
+      },
+      image: {
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        marginRight: 10,
+      },
+      row: {
+        padding: 20,
+        flexDirection: "row",
+        color: themeColors.text,
+        backgroundColor: themeColors.background,
+        alignItems: "center",
+        marginBottom: 12,
+      },
+      link: {
+        color: themeColors.accent,
+        textDecoration: "underline",
+        fontSize: 12,
+        marginTop: 2,
+      },
+    });
+    
     return (
       <Document>
         <Page size="A4" style={styles.page}>

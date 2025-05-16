@@ -10,8 +10,7 @@ export const handleRealTimeEducationChange = async ({
         level,
         resumeId,
         userData,
-      }: HandleRealTimeChangeParams) => {console.log(allFields);
-      
+      }: HandleRealTimeChangeParams) => {
         const data = reduceFormValues(allFields);
 
         if(userData && typeof resumeId === 'string' && typeof level === 'string'){

@@ -1,0 +1,1 @@
+export type themeType = { background: string; text: string; accent: string }

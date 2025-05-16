@@ -1,3 +1,4 @@
+import { themes } from "@/lib/constants"
 import { education, experience, project } from "./EducationSection/types"
 
 export interface resume {
@@ -7,6 +8,7 @@ export interface resume {
     ExperienceSection: experience[],
     SocialSection: SocialSection,
     SkillsSection: string[],
+    theme: keyof typeof themes,
 }
 
 export type SocialSection = {

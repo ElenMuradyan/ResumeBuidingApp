@@ -6,6 +6,7 @@ import ProjectSection from "@/components/resume/ProjectSection";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import SkillsSection from "@/components/resume/SkillsSection";
 import SocialSection from "@/components/resume/SocialSection";
+import { ThemeSelector } from "@/components/ThemeSelector";
 import { resume } from "@/features/resume/types";
 
 export const ROUTE_NAMES = {
@@ -142,8 +143,9 @@ export const data = (resume: resume | null) => [
             {
                 resume && 
                 <>
+                <ThemeSelector />
                 <ResumePreview data={resume} />
-                <DownloadButton data={resume}/>
+                <DownloadButton themeColors={themes[resume.theme || 'classic']} data={resume}/>
                 </>
             }
           </div>
@@ -172,3 +174,27 @@ export const addObjects = {
         description: ''
     }
 }
+
+export const themes = {
+    classic: {
+      background: "#ffffff",        // bg-white
+      text: "#000000",              // text-black
+      accent: "#2563eb",            // text-blue-600
+    },
+    dark: {
+      background: "#111827",        // bg-gray-900
+      text: "#ffffff",              // text-white
+      accent: "#f59e0b",            // text-yellow-400
+    },
+    lavender: {
+      background: "#faf5ff",        // bg-purple-50
+      text: "#5b21b6",              // text-purple-900
+      accent: "#4f46e5",            // text-indigo-600
+    },
+    forest: {
+      background: "#ecfdf5",        // bg-green-50
+      text: "#064e3b",              // text-green-900
+      accent: "#059669",            // text-emerald-600
+    },
+  };
+  

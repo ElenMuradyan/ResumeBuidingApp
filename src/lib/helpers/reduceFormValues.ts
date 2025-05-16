@@ -33,7 +33,6 @@ export function extractObject <T extends object>(data: T[], form?: FormInstance)
 
         return acc;
     }, {});
-console.log(section);
 
     form && form.setFieldsValue(section);
     return section;

@@ -31,6 +31,7 @@ export function TimelineDemo() {
                         ExperienceSection: extractArray<experience>(data.ExperienceSection),
                         SocialSection: data.SocialSection as SocialSection,
                         SkillsSection: data.SkillsSection?.skills as string[],
+                        theme: data.theme as string,
                     };
                 setResume(resumeInfo as resume);
                 }
