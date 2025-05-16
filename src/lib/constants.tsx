@@ -9,6 +9,9 @@ import SocialSection from "@/components/resume/SocialSection";
 import { ThemeSelector } from "@/components/ThemeSelector";
 import { resume } from "@/features/resume/types";
 import TextSpan from "@/components/ui/textSpan";
+import MagicButton from "@/components/ui/magic-button";
+import { Flex } from "antd";
+
 export const ROUTE_NAMES = {
     HOME: '/',
     ABOUT: '/about',
@@ -16,6 +19,7 @@ export const ROUTE_NAMES = {
     LOGIN:'/sign-in',
     REGISTER:'/sign-up',
     CREATERESUME: '/create-resume',
+    EDITRESUME: '/edit-resume',
 }
 
 export const navbarItems = [ 'HOME', 'ABOUT', 'RESUMES' ]
@@ -130,12 +134,15 @@ export const data = (resume: resume | null) => [
           <div>
             {
                 resume && 
-                <>
+                <div style={{width: 500}}>
                 <TextSpan className="mb-4 text-xs font-normal" words="View your resume changing themes and download PDF file." />
                 <ThemeSelector />
                 <ResumePreview data={resume} />
+                <Flex justify="space-between" align="center" style={{width: '100%'}}>
                 <DownloadButton themeColors={themes[resume.theme || 'classic']} data={resume}/>
-                </>
+                <MagicButton text='Finish Resume'/>
+                </Flex>
+                </div>
             }
           </div>
         ),
@@ -166,24 +173,24 @@ export const addObjects = {
 
 export const themes = {
     classic: {
-      background: "#ffffff",        // bg-white
-      text: "#000000",              // text-black
-      accent: "#2563eb",            // text-blue-600
+      background: "#ffffff",       
+      text: "#000000",              
+      accent: "#2563eb",          
     },
     dark: {
-      background: "#111827",        // bg-gray-900
-      text: "#ffffff",              // text-white
-      accent: "#f59e0b",            // text-yellow-400
+      background: "#111827",     
+      text: "#ffffff",              
+      accent: "#f59e0b",         
     },
     lavender: {
-      background: "#faf5ff",        // bg-purple-50
-      text: "#5b21b6",              // text-purple-900
-      accent: "#4f46e5",            // text-indigo-600
+      background: "#faf5ff",      
+      text: "#5b21b6",            
+      accent: "#4f46e5",          
     },
     forest: {
-      background: "#ecfdf5",        // bg-green-50
-      text: "#064e3b",              // text-green-900
-      accent: "#059669",            // text-emerald-600
+      background: "#ecfdf5",        
+      text: "#064e3b",             
+      accent: "#059669",           
     },
   };
   

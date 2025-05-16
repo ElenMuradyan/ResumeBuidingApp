@@ -9,6 +9,7 @@ export interface resume {
     SocialSection: SocialSection,
     SkillsSection: string[],
     theme: keyof typeof themes,
+    createdAt: string,
 }
 
 export type SocialSection = {

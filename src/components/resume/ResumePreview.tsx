@@ -20,7 +20,6 @@ export const ResumePreview = ({ data }: { data: resume }) => {
   useEffect(() => {
     setThemeColors(themes[selectedTheme] || themes.classic);
   }, [selectedTheme]);
-console.log(data);
 
   useEffect(() => {
     setSelectedTheme(data.theme || 'classic');

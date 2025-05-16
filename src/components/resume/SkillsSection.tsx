@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "next/navigation";
 import { RootState } from "@/state-management/store";
 import { useEffect, useState } from "react";
-import { onValue, ref, update } from "firebase/database";
+import { get, onValue, ref, update } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { options } from "@/lib/constants";
 
@@ -34,6 +34,13 @@ const SkillsSection = () => {
         if(userData){
             const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SkillsSection`);
             await update(resumeRef, {skills: val});
+
+            const snapshot = await get(resumeRef);
+            const resume = snapshot.val();
+
+            if(!resume.createdAt){
+                await update(resumeRef, {createdAt: new Date().toLocaleDateString()})
+            }
         }
     }
     return(
