@@ -31,4 +31,5 @@ export interface userData  {
     lastName: string,
     email: string,
     phone?: string,
+    finishedResumes: string[]
 }

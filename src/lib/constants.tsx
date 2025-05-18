@@ -11,6 +11,8 @@ import { resume } from "@/features/resume/types";
 import TextSpan from "@/components/ui/textSpan";
 import MagicButton from "@/components/ui/magic-button";
 import { Flex } from "antd";
+import finishResume from "@/features/resume/helpers";
+import { ParamValue } from "next/dist/server/request/params";
 
 export const ROUTE_NAMES = {
     HOME: '/',
@@ -28,6 +30,7 @@ export const regexpValidation = /^(?=.*\d)(?=.*[!@#$%^&*]).{6,16}$/;
 
 export const FIRESTORE_PATH_NAMES = {
     REGISTERED_USERS: 'registered_users',
+    RESUMES: 'resumes',
 }
 
 export const skills = [ 
@@ -73,7 +76,7 @@ export const options = skills.map((skill, idx) => ({
     idx: idx
 }));
 
-export const data = (resume: resume | null) => [
+export const data = (resume: resume | null, resumeId: ParamValue, uid: string | undefined, push: (val: string) => void) => [
     {
       title: "Personal Info",
       content: (
@@ -140,7 +143,7 @@ export const data = (resume: resume | null) => [
                 <ResumePreview data={resume} />
                 <Flex justify="space-between" align="center" style={{width: '100%'}}>
                 <DownloadButton themeColors={themes[resume.theme || 'classic']} data={resume}/>
-                <MagicButton text='Finish Resume'/>
+                <MagicButton onClick={() => uid && typeof resumeId === 'string' && finishResume(uid, resumeId, resume, push)} text='Finish Resume'/>
                 </Flex>
                 </div>
             }

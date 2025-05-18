@@ -5,7 +5,7 @@ import { Timeline } from "@/components/ui/timeline";
 import { data } from "@/lib/constants";
 import { ProfileSection, resume, SocialSection } from "@/features/resume/types";
 import { useSelector } from "react-redux";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { RootState } from "@/state-management/store";
 import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
@@ -16,7 +16,7 @@ export function TimelineDemo() {
     const [ resume, setResume ] = useState<resume | null>(null);
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
     const { resumeId } = useParams();
-
+    const { push } = useRouter();
     useEffect(() => {
         if (userData) {
             const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}`);
@@ -31,7 +31,7 @@ export function TimelineDemo() {
                         ExperienceSection: extractArray<experience>(data.ExperienceSection),
                         SocialSection: data.SocialSection as SocialSection,
                         SkillsSection: data.SkillsSection?.skills as string[],
-                        theme: data.theme as string,
+                        theme: data.theme || 'classic',
                     };
                 setResume(resumeInfo as resume);
                 }
@@ -44,7 +44,7 @@ export function TimelineDemo() {
 
   return (
     <div className="relative h-[auto] w-full overflow-clip">
-      <Timeline data={data(resume)} />
+      <Timeline data={data(resume, resumeId, userData?.uid, push)} />
     </div>
   );
 }

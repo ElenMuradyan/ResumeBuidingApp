@@ -5,7 +5,7 @@ import { themes } from "@/lib/constants";
 import { FacebookOutlined, InstagramOutlined, LinkedinOutlined, TwitterOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
-export const ResumePreview = ({ data }: { data: resume }) => {
+export const ResumePreview = ({ data, width = 'full' }: { data: resume, width?: string }) => {
   const {
     ProfileSection,
     ProjectSection,
@@ -30,31 +30,31 @@ export const ResumePreview = ({ data }: { data: resume }) => {
   return (
         <div
         id="resume-preview"
-        className="max-w-[500px] bg-white mt-4 mx-auto font-serif shadow-md text-sm"
+        className={`max-w-[${width}] bg-white mt-4 mx-auto font-serif shadow-md text-sm`}
         >
         <div 
             className="flex items-center p-4 gap-4 mb-4"
             style={{ backgroundColor: background, color: text }}
         >
-            {ProfileSection.imgUrl && (
+            {ProfileSection?.imgUrl && (
             <img
-                src={ProfileSection.imgUrl}
+                src={ProfileSection?.imgUrl}
                 alt="Profile"
                 className="w-16 h-16 object-cover rounded-full border border-gray-300"
             />
             )}
             <div>
             <h1 className="text-xl font-bold">
-                {`${ProfileSection.firstName} ${ProfileSection.lastName}`}
+                {`${ProfileSection?.firstName} ${ProfileSection?.lastName}`}
             </h1>
-            <p className="text-gray-600 text-sm">{ProfileSection.profession}</p>
+            <p className="text-gray-600 text-sm">{ProfileSection?.profession}</p>
             </div>
         </div>
 
         <div className="w-full px-4 pb-6 bg-white text-black">
             <section className="mt-3">
             <h2 style={{ color: accent }} className="text-base font-semibold border-b">Summary</h2>
-            <p>{ProfileSection.summary}</p>
+            <p>{ProfileSection?.summary}</p>
             </section>
 
             <section className="mt-3">
@@ -74,7 +74,7 @@ export const ResumePreview = ({ data }: { data: resume }) => {
             <h2 style={{ color: accent }} className="text-base font-semibold border-b">Skills</h2>
             <p className="pl-5">
                 {
-                    SkillsSection.join(", ")
+                    SkillsSection?.join(", ")
                 }
             </p>
             </section>
