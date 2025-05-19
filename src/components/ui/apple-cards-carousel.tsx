@@ -13,6 +13,9 @@ import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { ResumePreview } from "../resume/ResumePreview";
 import { resume } from "@/features/resume/types";
+import MagicButton from "./magic-button";
+import { useRouter } from "next/navigation";
+import { ROUTE_NAMES } from "@/lib/constants";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -103,7 +106,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           <div
             className={cn(
               "flex flex-row justify-start gap-4 pl-4",
-              "mx-auto max-w-7xl", // remove max-w-4xl if you want the carousel to span the full width of its container
+              "mx-auto max-w-7xl",
             )}
           >
             {items.map((item, index) => (
@@ -159,8 +162,11 @@ export const Card = ({
   date: string,
   id: string,
 }) => {
+  const { push } = useRouter();
+
   return (
-        <div className="relative w-[400px] h-[400px] bg-[#0e035142] overflow-hidden z-40 p-8">
+    <div className="flex flex-col w-[400px] h-auto p-4 bg-[#08114249] ">
+        <div className="relative w-[380px] h-[400px] overflow-hidden">
           <motion.p
             className="text-left font-sans text-sm font-medium text-white md:text-base"
           >
@@ -175,5 +181,11 @@ export const Card = ({
           data={data}
           />
         </div>
+        
+        <div className="flex w-[350px] p-3 h-[auto] items-center justify-between ">
+          <MagicButton text="View demo" onClick={() => push(`${ROUTE_NAMES.RESUME}/${id}`)}/>
+          <MagicButton text="Edit resume" onClick={() => push(`${ROUTE_NAMES.EDITRESUME}/${id}`)}/>
+        </div>
+    </div>
   );
 };

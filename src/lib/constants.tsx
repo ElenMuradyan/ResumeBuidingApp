@@ -22,6 +22,7 @@ export const ROUTE_NAMES = {
     REGISTER:'/sign-up',
     CREATERESUME: '/create-resume',
     EDITRESUME: '/edit-resume',
+    RESUME: '/resume'
 }
 
 export const navbarItems = [ 'HOME', 'ABOUT', 'RESUMES' ]

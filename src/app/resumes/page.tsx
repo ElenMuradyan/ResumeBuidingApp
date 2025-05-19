@@ -1,15 +1,11 @@
 'use client'
 
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import { realTimeDb } from "@/services/firebase/firebase";
 import { AppDispatch, RootState } from "@/state-management/store";
-import { get, ref } from "firebase/database";
-import { JSX, useEffect, useState } from "react"
+import { JSX, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Carousel } from "@/components/ui/apple-cards-carousel";
-import { ProfileSection, resume, SocialSection } from "@/features/resume/types";
-import { extractArray } from "@/lib/helpers/reduceFormValues";
-import { education, experience, project } from "@/features/resume/EducationSection/types";
+import { resume } from "@/features/resume/types";
 import { fetchUserResumes } from "@/features/resume/ResumesSlice";
 
 type Resume =  {
