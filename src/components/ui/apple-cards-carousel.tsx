@@ -165,27 +165,27 @@ export const Card = ({
   const { push } = useRouter();
 
   return (
-    <div className="flex flex-col w-[400px] h-auto p-4 bg-[#08114249] ">
-        <div className="relative w-[380px] h-[400px] overflow-hidden">
-          <motion.p
-            className="text-left font-sans text-sm font-medium text-white md:text-base"
-          >
-            DATE: {date}
-          </motion.p>
-          <motion.p
-            className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-[#00ffdd] md:text-3xl"
-          >
-            {summary.split(' ').slice(0, 3).join(' ')}{summary.split(' ').length > 3 ? '...' : ''}
-          </motion.p>
-          <ResumePreview
-          data={data}
-          />
+    <div className="flex flex-col items-center justify-center w-[380px] h-auto p-4 bg-[#08114249]">
+      <div className="relative w-full h-[400px] overflow-hidden">
+        <motion.p
+          className="text-left font-sans text-sm font-medium text-white md:text-base"
+        >
+          DATE: {date}
+        </motion.p>
+        <motion.p
+          className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-[#00ffdd] md:text-3xl"
+        >
+          {summary.split(' ').slice(0, 3).join(' ')}{summary.split(' ').length > 3 ? '...' : ''}
+        </motion.p>
+        <div className="max-w-[350px]">
+          <ResumePreview data={data} />
         </div>
-        
-        <div className="flex w-[350px] p-3 h-[auto] items-center justify-between ">
-          <MagicButton text="View demo" onClick={() => push(`${ROUTE_NAMES.RESUME}/${id}`)}/>
-          <MagicButton text="Edit resume" onClick={() => push(`${ROUTE_NAMES.EDITRESUME}/${id}`)}/>
-        </div>
+      </div>
+
+      <div className="flex w-full max-w-[350px] p-3 items-center justify-between">
+        <MagicButton text="View demo" onClick={() => push(`${ROUTE_NAMES.RESUME}/${id}`)} />
+        <MagicButton text="Edit resume" onClick={() => push(`${ROUTE_NAMES.EDITRESUME}/${id}`)} />
+      </div>
     </div>
   );
 };

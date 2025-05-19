@@ -138,10 +138,12 @@ export const data = (resume: resume | null, resumeId: ParamValue, uid: string | 
           <div>
             {
                 resume && 
-                <div style={{width: 500}}>
+                <div >
                 <TextSpan className="mb-4 text-xs font-normal" words="View your resume changing themes and download PDF file." />
                 <ThemeSelector />
+                <div className="max-w-[400px] pr-[1.5px] flex items-center justify-center h-[100%]">
                 <ResumePreview data={resume} />
+                </div>
                 <Flex justify="space-between" align="center" style={{width: '100%'}}>
                 <DownloadButton themeColors={themes[resume.theme || 'classic']} data={resume}/>
                 <MagicButton onClick={() => uid && typeof resumeId === 'string' && finishResume(uid, resumeId, resume, push)} text='Finish Resume'/>
@@ -198,3 +200,4 @@ export const themes = {
     },
   };
   
+export type theme = keyof typeof themes;

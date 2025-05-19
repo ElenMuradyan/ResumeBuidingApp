@@ -1,6 +1,5 @@
 import { themes } from "@/lib/constants"
 import { education, experience, project } from "./EducationSection/types"
-import { error } from "console"
 
 export interface resume {
     ProfileSection: ProfileSection,

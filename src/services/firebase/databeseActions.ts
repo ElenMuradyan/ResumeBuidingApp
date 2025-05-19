@@ -1,8 +1,8 @@
-import { FIRESTORE_PATH_NAMES } from "@/lib/constants";
+import { FIRESTORE_PATH_NAMES, theme } from "@/lib/constants";
 import { collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { userData } from "@/features/auth/types";
-import { Resume } from "@/features/resume/types";
+import { resume, Resume } from "@/features/resume/types";
 
 export const updateUser = async (uid: string, updateObject: object) => {
     try{
@@ -37,5 +37,42 @@ export const getUserResumes = async (uid: string) => {
     }catch(err: any){
         console.log(err.message);
         return [];
+    }
+}
+
+export const getResume = async (uid: string, resumeId: string) => {
+    try{
+        const resRef = doc(db, FIRESTORE_PATH_NAMES.REGISTERED_USERS, uid, FIRESTORE_PATH_NAMES.RESUMES, resumeId);
+        const snap = await getDoc(resRef);
+
+        if(!snap.exists()){
+            throw new Error("Resume Info wasn't found.");
+        }
+
+        const {data} = snap.data();
+        return data as resume;
+    }catch(err: any){
+        console.log(err.message);
+        return null;
+    }
+}
+
+export const updateResumeTheme = async (uid: string, resumeId: string, theme: theme) => {
+    try{
+        const resRef = doc(db, FIRESTORE_PATH_NAMES.REGISTERED_USERS, uid, FIRESTORE_PATH_NAMES.RESUMES, resumeId);
+
+        const snap = await getDoc(resRef);
+
+        if(!snap.exists()){
+            throw new Error("Resume Info wasn't found.");
+        }
+
+        const {data} = snap.data();
+
+        await updateDoc(resRef, {data: {
+            ...data, theme: theme
+        }});
+    }catch(err: any){
+        console.log(err.message);
     }
 }

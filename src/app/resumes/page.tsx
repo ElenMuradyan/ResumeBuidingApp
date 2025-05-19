@@ -5,15 +5,8 @@ import { AppDispatch, RootState } from "@/state-management/store";
 import { JSX, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Carousel } from "@/components/ui/apple-cards-carousel";
-import { resume } from "@/features/resume/types";
 import { fetchUserResumes } from "@/features/resume/ResumesSlice";
-
-type Resume =  {
-    id: string, 
-    summary: string,
-    date: string,
-    data: resume
-}
+import { HeroHighlightDemo } from "@/components/HeroHighlightDemo";
 
 export default function Resumes () {
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
@@ -30,11 +23,13 @@ export default function Resumes () {
     )});
 
     return(
-        <div className="pt-30 flex items-center justify-center flex-col">
+        <HeroHighlightDemo className='flex flex-col w-[100%] items-center justify-center gap-5 p-10'>
+        <div className="pt-20 flex items-center justify-center flex-col">
             <TextGenerateEffect className="text-center" words="View and Edit Your Resumes"/>
             <div className="w-[90%] h-auto flex flex-wrap">
                 <Carousel items={items as JSX.Element[]}/>
             </div>
         </div>
+        </HeroHighlightDemo>
     )
 }

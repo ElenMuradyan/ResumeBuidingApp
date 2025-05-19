@@ -23,11 +23,6 @@ export default function Hero () {
 
     return(
         <div
-        style={{
-          backgroundImage: `url('/Images/bg.png')`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover'
-        }}
         className="h-[100vh] w-[100%]">
           <HeroHighlightDemo className='flex flex-col md:flex-row h-[100vh] w-[100%] items-center justify-center gap-10 p-10'>
           <div className='w-full md:w-[50%] flex flex-col h-[100vh] items-center justify-center'>

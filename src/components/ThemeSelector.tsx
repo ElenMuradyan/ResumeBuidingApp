@@ -1,6 +1,7 @@
 'use client'
 
-import { themes } from "@/lib/constants";
+import { theme, themes } from "@/lib/constants";
+import { updateResumeTheme } from "@/services/firebase/databeseActions";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { RootState } from "@/state-management/store";
 import { Select } from "antd";
@@ -12,15 +13,18 @@ import { useSelector } from "react-redux";
 const { Option } = Select;
 
 export const ThemeSelector = () => { 
-    const [ selectedTheme, setSelectedTheme ] = useState<string>('classic');
+    const [ selectedTheme, setSelectedTheme ] = useState<theme>('classic');
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
     const { resumeId } = useParams();
 
-    const onChange = (val: string) => {
+    const onChange = async (val: theme) => {
         setSelectedTheme(val);
         try{
             const resumeRef = ref(realTimeDb, `users/${userData?.uid}/resumes/${resumeId}`);
-            update(resumeRef, { theme: val});    
+            update(resumeRef, { theme: val}); 
+            if(userData && typeof resumeId === 'string') {
+              await updateResumeTheme(userData?.uid, resumeId, val);   
+            }
         }catch(err: any){
             console.log(err.message);
         }
