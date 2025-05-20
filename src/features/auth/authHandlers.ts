@@ -1,9 +1,10 @@
 import { auth, db } from "@/services/firebase/firebase";
-import { fetchUserProfileInfo } from "./userSlice";
+import { fetchUserProfileInfo, setIsAuth } from "./userSlice";
 import { RegisterFunctionProps } from "./types";
 import { FIRESTORE_PATH_NAMES, ROUTE_NAMES } from "@/lib/constants";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { store } from "@/state-management/store";
 
 export const handleRegister = async ({values, setLoading, push}: RegisterFunctionProps) => {
     setLoading(true);
@@ -57,3 +58,27 @@ export const handleLogin = async ({values, setLoading, push, dispatch}: Register
         setLoading(false);
     };
 };
+
+export default async function handleLogout () {
+  try{
+    await signOut(auth); 
+    console.log('hi');
+    
+    store.dispatch(setIsAuth(false));
+
+    const res = await fetch('/api/auth/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if(!res.ok){
+      throw new Error('Something went wrong.')
+    };
+
+    window.location.reload();
+  }catch(err: any){
+
+  }
+}

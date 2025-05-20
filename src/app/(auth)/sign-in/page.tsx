@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { handleLogin } from '@/features/auth/authHandlers';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/state-management/store';
-import { formStyles, formItemStyle } from '@/styles/constants';
+import { formItemStyle, loginFormStyles } from '@/styles/constants';
 import { Input } from '@/components/ui/input';
 import MagicButton from '@/components/ui/magic-button';
 import Link from 'next/link';
@@ -23,7 +23,7 @@ const Login = () => {
       layout="vertical"
       onFinish={(values) => handleLogin({ setLoading, values, push, dispatch })}
       form={form}
-      style={formStyles}
+      style={loginFormStyles}
     >
       <h1 className="text-white">SIGN IN</h1>
 

@@ -1,5 +1,11 @@
 "use client";
 import React from "react";
+import AuthProfileDropDown from "./dropdown";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state-management/store";
+import { UserOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
+import { ROUTE_NAMES } from "@/lib/constants";
 
 export const MenuItem = ({
   item,
@@ -19,11 +25,17 @@ export const Menu = ({
   }: {
     children: React.ReactNode;
   }) => {
+    const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
+    const { push } = useRouter();
+
     return (
       <nav
-        className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 "
+        className="relative rounded-full border border-transparent bg-[#00000074] shadow-input flex justify-center space-x-4 px-8 py-6 "
       >
         {children}
+        {
+          userData ? <AuthProfileDropDown /> : <div onClick={() => push(ROUTE_NAMES.LOGIN)} className="absolute rounded-4xl text-[15px] p-[10px] bg-[#000000b7] cursor-pointer right-[1.5rem] top-[1rem]"><UserOutlined/></div>
+        }
       </nav>
     );
 };  

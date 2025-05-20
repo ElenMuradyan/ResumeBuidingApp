@@ -5,7 +5,7 @@ import { Form } from 'antd';
 import { regexpValidation, ROUTE_NAMES } from "@/lib/constants";
 import { handleRegister } from "@/features/auth/authHandlers";
 import { useRouter } from "next/navigation";
-import { formItemStyle, formStyles } from "@/styles/constants";
+import { formItemStyle } from "@/styles/constants";
 import MagicButton from "@/components/ui/magic-button";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
@@ -20,7 +20,7 @@ const Register = () => {
       onFinish={(values) => handleRegister({ values, setLoading, push })}
       layout="vertical"
       form={form}
-      style={formStyles}
+      style={formItemStyle}
     >
       <h1 className="gradient-text">SIGN UP</h1>
 

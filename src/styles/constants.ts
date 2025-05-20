@@ -32,3 +32,16 @@ export const formItemStyle = {
     margin: '10px 0',
     borderRadius: '55px',
 }
+
+export const loginFormStyles:CSSProperties = {
+  display: "flex",
+  width: '400px',
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+  backgroundColor: 'rgba(226, 203, 255, 0.1)',
+  borderRadius: 30,
+  padding: 30,
+  overflow: "hidden",
+  transition: "0.2s 0.7s ease-in-out",
+};
