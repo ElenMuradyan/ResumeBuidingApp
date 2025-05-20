@@ -26,7 +26,7 @@ export default function AuthProfileDropDown () {
   return (
     <Dropdown>
       <DropdownTrigger>
-      <Avatar style={{position: 'absolute', right: '1.5rem', backgroundColor: 'black'}} className="right-6">
+      <Avatar style={{position: 'absolute', right: '1.5rem', backgroundColor: 'black', border: '1px solid #00ffdd', color: '#00ffdd', cursor: 'pointer'}} className="right-6">
           <UserOutlined />
         </Avatar>
       </DropdownTrigger>
@@ -34,7 +34,7 @@ export default function AuthProfileDropDown () {
         {(item) => (
           <DropdownItem
             key={item.key}
-            className='w-[200px] flex items-center justify-center text-center p-[5px] bg-[#010101b2]'
+            className='w-[200px] cursor-pointer flex items-center justify-center text-center p-[5px] bg-[#010101]'
             onClick={item.onClick}
           >
             {item.label}

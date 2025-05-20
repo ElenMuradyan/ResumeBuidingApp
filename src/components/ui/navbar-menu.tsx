@@ -34,7 +34,7 @@ export const Menu = ({
       >
         {children}
         {
-          userData ? <AuthProfileDropDown /> : <div onClick={() => push(ROUTE_NAMES.LOGIN)} className="absolute rounded-4xl text-[15px] p-[10px] bg-[#000000b7] cursor-pointer right-[1.5rem] top-[1rem]"><UserOutlined/></div>
+          userData ? <AuthProfileDropDown /> : <div onClick={() => push(ROUTE_NAMES.LOGIN)} className="absolute rounded-4xl text-[15px] p-[10px] bg-[#000000b7] cursor-pointer right-[1.5rem] top-[1rem] border-[1px] border-[#00ffdd] text-[#00ffdd]"><UserOutlined/></div>
         }
       </nav>
     );

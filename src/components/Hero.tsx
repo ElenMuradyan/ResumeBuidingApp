@@ -46,6 +46,5 @@ export default function Hero () {
           }
           </HeroHighlightDemo>
         </div>
-  
     )
 }
