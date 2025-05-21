@@ -15,7 +15,7 @@ import { ResumePreview } from "../resume/ResumePreview";
 import { resume } from "@/features/resume/types";
 import MagicButton from "./magic-button";
 import { useRouter } from "next/navigation";
-import { ROUTE_NAMES } from "@/lib/constants";
+import { ROUTE_NAMES } from "@/lib/Route_Names";
 
 interface CarouselProps {
   items: JSX.Element[];

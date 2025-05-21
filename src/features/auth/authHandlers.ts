@@ -1,10 +1,11 @@
 import { auth, db } from "@/services/firebase/firebase";
 import { fetchUserProfileInfo, setIsAuth } from "./userSlice";
 import { RegisterFunctionProps } from "./types";
-import { FIRESTORE_PATH_NAMES, ROUTE_NAMES } from "@/lib/constants";
+import { FIRESTORE_PATH_NAMES } from "@/lib/constants";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { store } from "@/state-management/store";
+import { ROUTE_NAMES } from "@/lib/Route_Names";
 
 export const handleRegister = async ({values, setLoading, push}: RegisterFunctionProps) => {
     setLoading(true);

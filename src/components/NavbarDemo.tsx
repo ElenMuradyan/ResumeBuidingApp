@@ -3,7 +3,8 @@ import React from "react";
 import { MenuItem, Menu } from "./ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { navbarItems, ROUTE_NAMES } from "@/lib/constants";
+import { navbarItems } from "@/lib/constants";
+import { ROUTE_NAMES } from "@/lib/Route_Names";
 
 export function NavbarDemo() {
   return (

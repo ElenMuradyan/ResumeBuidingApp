@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { Form } from 'antd';
-import { regexpValidation, ROUTE_NAMES } from "@/lib/constants";
+import { regexpValidation } from "@/lib/constants";
 import { handleRegister } from "@/features/auth/authHandlers";
 import { useRouter } from "next/navigation";
 import { formItemStyle } from "@/styles/constants";
 import MagicButton from "@/components/ui/magic-button";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
+import { ROUTE_NAMES } from "@/lib/Route_Names";
 
 const Register = () => {
   const [form] = Form.useForm();

@@ -5,7 +5,7 @@ import { HeroHighlightDemo } from "./HeroHighlightDemo";
 import MagicButton from "./ui/magic-button";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { useRouter } from "next/navigation";
-import { ROUTE_NAMES } from "@/lib/constants";
+import { ROUTE_NAMES } from "@/lib/Route_Names";
 import { generateResumeId } from "@/lib/helpers/uniqueID";
 
 export default function Hero () {

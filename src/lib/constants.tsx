@@ -14,18 +14,6 @@ import { Flex } from "antd";
 import finishResume from "@/features/resume/helpers";
 import { ParamValue } from "next/dist/server/request/params";
 
-export const ROUTE_NAMES = {
-    HOME: '/',
-    ABOUT: '/about',
-    RESUMES: '/resumes',
-    LOGIN:'/sign-in',
-    REGISTER:'/sign-up',
-    CREATERESUME: '/create-resume',
-    EDITRESUME: '/edit-resume',
-    RESUME: '/resume',
-    PROFILE: '/profile'
-}
-
 export const navbarItems = [ 'HOME', 'ABOUT', 'RESUMES' ]
    
 export const regexpValidation = /^(?=.*\d)(?=.*[!@#$%^&*]).{6,16}$/;

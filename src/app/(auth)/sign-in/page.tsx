@@ -2,7 +2,7 @@
 
 import { Form } from 'antd';
 import { useState } from 'react';
-import { regexpValidation, ROUTE_NAMES } from '@/lib/constants';
+import { regexpValidation } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
 import { handleLogin } from '@/features/auth/authHandlers';
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ import { formItemStyle, loginFormStyles } from '@/styles/constants';
 import { Input } from '@/components/ui/input';
 import MagicButton from '@/components/ui/magic-button';
 import Link from 'next/link';
+import { ROUTE_NAMES } from '@/lib/Route_Names';
 
 const Login = () => {
   const [form] = Form.useForm();

@@ -1,7 +1,8 @@
-import { FIRESTORE_PATH_NAMES, ROUTE_NAMES } from "@/lib/constants";
+import { FIRESTORE_PATH_NAMES } from "@/lib/constants";
 import { db } from "@/services/firebase/firebase";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { resume } from "./types";
+import { ROUTE_NAMES } from "@/lib/Route_Names";
 
 export default async function finishResume (uid: string, resumeId: string, resume: resume, push: (val: string) => void) {
     try{
