@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { realTimeDb } from "@/services/firebase/firebase";
 import ImgUpload from "../ImageUpload";
 import { formItemStyle, formStyles } from "@/styles/constants";
-import handleDelete, { handleRealTimeChange } from "@/features/resume/PersonalSection/formHandlers";
+import handleImageDelete, { handleRealTimeChange } from "@/features/resume/formHandlers";
 
 const ProfileSection = () => {
     const [ uploading, setUploading ] = useState(false);
@@ -156,7 +156,7 @@ const ProfileSection = () => {
                     img={imgUrl}
                     uploading={uploading} 
                     handleUpload={handleUpload}
-                    handleRemove={() => userData && handleDelete({userData, resumeId, setImgUrl})}
+                    handleRemove={() => userData && handleImageDelete({userData, resumeId, setImgUrl})}
                     />
                 </Form.Item>
             </Form>

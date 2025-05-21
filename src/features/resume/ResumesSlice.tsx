@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getUserResumes } from "@/services/firebase/databeseActions";
-import { Resume, slice } from "./types";
+import { Resume, SliceState } from "./types";
 
-const initialState: slice = {
+const initialState: SliceState = {
     loading: false,
     resumes: [],
     error: null
 }
 
-export const fetchUserResumes = createAsyncThunk<Resume[] | null, string>(
+export const fetchUserResumes = createAsyncThunk<Resume[], string>(
     'user/fetchUserResumes',
     async (uid: string, { rejectWithValue }) => {
         console.log(uid);
@@ -19,8 +19,8 @@ export const fetchUserResumes = createAsyncThunk<Resume[] | null, string>(
         
         return data;  
       }catch(err: any){
-        return rejectWithValue(null);
-      }
+        return rejectWithValue("Failed to fetch user resumes");
+    }
     }
   );
   
@@ -39,7 +39,7 @@ const userResumeSlice = createSlice({
         })
         .addCase(fetchUserResumes.rejected, (state, action) =>{          
             state.loading = false;
-            state.error = action.payload as string;
+            state.error = "Failed to fetch resumes"; 
             state.resumes = [];
         })
     }

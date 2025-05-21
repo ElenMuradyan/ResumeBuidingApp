@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from "@/state-management/store";
 import { JSX, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Carousel } from "@/components/ui/apple-cards-carousel";
-import { fetchUserResumes } from "@/features/resume/ResumesSlice";
+import { fetchUserResumes } from "@/features/resume/resumesSlice";
 import { HeroHighlightDemo } from "@/components/HeroHighlightDemo";
 
 export default function Resumes () {

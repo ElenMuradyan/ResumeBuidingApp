@@ -1,0 +1,1 @@
+export const regexpValidation = /^(?=.*\d)(?=.*[!@#$%^&*]).{6,16}$/;

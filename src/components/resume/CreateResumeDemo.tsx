@@ -10,7 +10,7 @@ import { RootState } from "@/state-management/store";
 import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
-import { education, experience, project } from "@/features/resume/EducationSection/types";
+import { education, project, experience } from "@/features/resume/types";
 
 export function TimelineDemo() {
     const [ resume, setResume ] = useState<resume | null>(null);

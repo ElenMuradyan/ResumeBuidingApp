@@ -2,7 +2,7 @@
 
 import { Form } from 'antd';
 import { useState } from 'react';
-import { regexpValidation } from '@/lib/constants';
+import { regexpValidation } from '@/features/auth/constants';
 import { useRouter } from 'next/navigation';
 import { handleLogin } from '@/features/auth/authHandlers';
 import { useDispatch } from 'react-redux';

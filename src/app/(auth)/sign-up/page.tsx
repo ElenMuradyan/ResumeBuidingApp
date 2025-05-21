@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Form } from 'antd';
-import { regexpValidation } from "@/lib/constants";
+import { regexpValidation } from "@/features/auth/constants";
 import { handleRegister } from "@/features/auth/authHandlers";
 import { useRouter } from "next/navigation";
 import { formItemStyle } from "@/styles/constants";

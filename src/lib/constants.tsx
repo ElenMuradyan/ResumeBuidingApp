@@ -11,16 +11,15 @@ import { resume } from "@/features/resume/types";
 import TextSpan from "@/components/ui/textSpan";
 import MagicButton from "@/components/ui/magic-button";
 import { Flex } from "antd";
-import finishResume from "@/features/resume/helpers";
+import finishResume from "@/features/resume/resumeHandlers";
 import { ParamValue } from "next/dist/server/request/params";
 
 export const navbarItems = [ 'HOME', 'ABOUT', 'RESUMES' ]
    
-export const regexpValidation = /^(?=.*\d)(?=.*[!@#$%^&*]).{6,16}$/;
-
 export const FIRESTORE_PATH_NAMES = {
     REGISTERED_USERS: 'registered_users',
     RESUMES: 'resumes',
+    USERS: 'users'
 }
 
 export const skills = [ 
