@@ -1,10 +1,10 @@
 import { Upload } from "antd";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { useSelector } from "react-redux";
-import { ImgUploadProps } from "@/types/imageUpload";
+import { ImgUploadProps, ProfileImgUploadProps } from "@/types/imageUpload";
 import { RootState } from "@/state-management/store";
 
-const ProfileImageUpload = ({ uploading, handleUpload, handleRemove }: ImgUploadProps) => {
+const ProfileImageUpload = ({ uploading, handleUpload, handleRemove }: ProfileImgUploadProps) => {
     const { userData } = useSelector((store: RootState) => store.userProfile.authUserInfo);
 
     const uploadButton = (
