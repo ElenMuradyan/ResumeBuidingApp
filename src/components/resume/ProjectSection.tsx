@@ -2,7 +2,7 @@
 
 import { Form } from "antd";
 import { useSelector } from "react-redux";
-import { handleAdd, handleDelete, handleRealTimeEducationChange } from "@/features/resume/EducationSection/formHandlers";
+import { handleAdd, handleDelete, handleRealTimeChange } from "@/features/resume/formHandlers";
 import { useParams, useRouter } from "next/navigation";
 import { RootState } from "@/state-management/store";
 import { useEffect, useState } from "react";
@@ -11,8 +11,9 @@ import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { formItemStyle, formStyles } from "@/styles/constants";
 import { Input } from "../ui/input";
-import { project } from "@/features/resume/EducationSection/types";
+import { project } from "@/features/resume/types";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
+import { FIRESTORE_PATH_NAMES } from "@/lib/constants";
 
 const ProjectSection = () => {
     const [ form ] = Form.useForm();
@@ -27,7 +28,7 @@ const ProjectSection = () => {
 
         useEffect(() => {
             if (userData && typeof resumeId === "string") {
-                const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/ProjectSection`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
                 const unsubscribe = onValue(resumeRef, (snapshot) => {
                   const data = snapshot.val();
                   
@@ -44,7 +45,7 @@ const ProjectSection = () => {
     return(
         <Form 
         form={form} 
-        onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'ProjectSection', resumeId, userData})}
+        onFieldsChange={(_, allFields) => userData && handleRealTimeChange({allFields, level: 'ProjectSection', resumeId, userData})}
         layout="vertical" 
         style={formStyles}
         >

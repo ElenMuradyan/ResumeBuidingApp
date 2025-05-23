@@ -23,12 +23,10 @@ export default function Resumes () {
     )});
 
     return(
-        <HeroHighlightDemo className='flex flex-col w-[100%] items-center justify-center gap-5 p-10'>
+        <HeroHighlightDemo className='flex flex-col h-auto w-full items-center justify-center gap-5 p-10'>
         <div className="pt-20 flex items-center justify-center flex-col">
             <TextGenerateEffect className="text-center" words="View and Edit Your Resumes"/>
-            <div className="w-[90%] h-auto flex flex-wrap">
-                <Carousel items={items as JSX.Element[]}/>
-            </div>
+            <Carousel items={items as JSX.Element[]} />
         </div>
         </HeroHighlightDemo>
     )

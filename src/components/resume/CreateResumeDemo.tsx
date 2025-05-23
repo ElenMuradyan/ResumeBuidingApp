@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Timeline } from "@/components/ui/timeline";
-import { data } from "@/lib/constants";
+import { data, FIRESTORE_PATH_NAMES } from "@/lib/constants";
 import { ProfileSection, resume, SocialSection } from "@/features/resume/types";
 import { useSelector } from "react-redux";
 import { useParams, useRouter } from "next/navigation";
@@ -19,7 +19,7 @@ export function TimelineDemo() {
     const { push } = useRouter();
     useEffect(() => {
         if (userData) {
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
                 const data = snapshot.val();
                 

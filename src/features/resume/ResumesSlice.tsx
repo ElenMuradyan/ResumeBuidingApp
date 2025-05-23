@@ -10,13 +10,9 @@ const initialState: SliceState = {
 
 export const fetchUserResumes = createAsyncThunk<Resume[], string>(
     'user/fetchUserResumes',
-    async (uid: string, { rejectWithValue }) => {
-        console.log(uid);
-        
+    async (uid: string, { rejectWithValue }) => {        
       try {
-        const data = await getUserResumes(uid);
-        console.log(data);
-        
+        const data = await getUserResumes(uid);        
         return data;  
       }catch(err: any){
         return rejectWithValue("Failed to fetch user resumes");

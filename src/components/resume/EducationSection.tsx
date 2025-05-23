@@ -2,7 +2,7 @@
 
 import { Form } from "antd";
 import { useSelector } from "react-redux";
-import { handleDelete, handleRealTimeEducationChange, handleAdd } from "@/features/resume/EducationSection/formHandlers";
+import { handleDelete, handleRealTimeChange, handleAdd } from "@/features/resume/formHandlers";
 import { useParams } from "next/navigation";
 import { RootState } from "@/state-management/store";
 import { useEffect, useState } from "react";
@@ -12,7 +12,8 @@ import { realTimeDb } from "@/services/firebase/firebase";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
 import { formItemStyle, formStyles } from "@/styles/constants";
 import { Input } from "../ui/input";
-import { education } from "@/features/resume/EducationSection/types";
+import { education } from "@/features/resume/types";
+import { FIRESTORE_PATH_NAMES } from "@/lib/constants";
 
 const EducationSection = () => {
     const [ form ] = Form.useForm();
@@ -27,7 +28,7 @@ const EducationSection = () => {
 
         useEffect(() => {
             if (userData && typeof resumeId === "string") {
-                const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/EducationSection`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
                 const unsubscribe = onValue(resumeRef, (snapshot) => {
                   const data = snapshot.val();
                   
@@ -44,7 +45,7 @@ const EducationSection = () => {
     return(
             <Form 
             form={form} 
-            onFieldsChange={(_, allFields) => userData && handleRealTimeEducationChange({allFields, level: 'EducationSection', resumeId, userData})}
+            onFieldsChange={(_, allFields) => userData && handleRealTimeChange({allFields, level: 'EducationSection', resumeId, userData})}
             layout="vertical" 
             style={formStyles}
             >

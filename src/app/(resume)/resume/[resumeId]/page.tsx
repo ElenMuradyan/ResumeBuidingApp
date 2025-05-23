@@ -7,7 +7,7 @@ import { ThemeSelector } from "@/components/ThemeSelector";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { project, experience, education } from "@/features/resume/types";
 import { ProfileSection, resume, SocialSection } from "@/features/resume/types";
-import { themes } from "@/lib/constants";
+import { FIRESTORE_PATH_NAMES, themes } from "@/lib/constants";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { RootState } from "@/state-management/store";
@@ -23,7 +23,7 @@ export default function Resume () {
 
     useEffect(() =>{
         if (userData) {
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
                 const data = snapshot.val();
                 

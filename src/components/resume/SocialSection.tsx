@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 import { Input } from "../ui/input";
 import { RootState } from "@/state-management/store";
 import { onValue, ref } from "firebase/database";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { formItemStyle, formStyles } from "@/styles/constants";
-import { handleRealTimeChange } from "@/features/resume/PersonalSection/formHandlers";
+import { handleRealTimeChange } from "@/features/resume/formHandlers";
+import { FIRESTORE_PATH_NAMES } from "@/lib/constants";
 
 const SocialSection = () => {
     const [ form ] = Form.useForm();
@@ -24,7 +25,7 @@ const SocialSection = () => {
 
     useEffect(() => {
         if (userData) {
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SocialSection`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
               const data = snapshot.val();
               if (data) {

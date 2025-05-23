@@ -1,6 +1,6 @@
 'use client'
 
-import { theme, themes } from "@/lib/constants";
+import { FIRESTORE_PATH_NAMES, theme, themes } from "@/lib/constants";
 import { updateResumeTheme } from "@/services/firebase/databeseActions";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { RootState } from "@/state-management/store";
@@ -32,7 +32,7 @@ export const ThemeSelector = () => {
 
     useEffect(() => {
         if(userData){
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
                 const data = snapshot.val();
               

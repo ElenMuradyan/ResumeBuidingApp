@@ -7,7 +7,7 @@ import { RootState } from "@/state-management/store";
 import { useEffect, useState } from "react";
 import { get, onValue, ref, update } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
-import { options } from "@/lib/constants";
+import { FIRESTORE_PATH_NAMES, options } from "@/lib/constants";
 
 const SkillsSection = () => {
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
@@ -16,7 +16,7 @@ const SkillsSection = () => {
 
     useEffect(() => {
         if (userData && typeof resumeId === "string") {
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SkillsSection`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
                 const data = snapshot.val();
                 
@@ -32,7 +32,7 @@ const SkillsSection = () => {
     const handleSelect = async (val: string[]) => {
         setSkillsSection(val);
         if(userData){
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/SkillsSection`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
             await update(resumeRef, {skills: val});
 
             const snapshot = await get(resumeRef);

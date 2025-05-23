@@ -14,6 +14,7 @@ import { realTimeDb } from "@/services/firebase/firebase";
 import ImgUpload from "../ImageUpload";
 import { formItemStyle, formStyles } from "@/styles/constants";
 import handleImageDelete, { handleRealTimeChange } from "@/features/resume/formHandlers";
+import { FIRESTORE_PATH_NAMES } from "@/lib/constants";
 
 const ProfileSection = () => {
     const [ uploading, setUploading ] = useState(false);
@@ -25,7 +26,7 @@ const ProfileSection = () => {
 
     useEffect(() => {
         if (userData && typeof resumeId === "string") {
-            const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/ProfileSection`);
+            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
             const unsubscribe = onValue(resumeRef, (snapshot) => {
               const data = snapshot.val();
               if (data) {
@@ -50,7 +51,7 @@ const ProfileSection = () => {
                     setImgUrl(imageUrl);
 
                     if (userData && typeof resumeId === 'string') {
-                        const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/ProfileSection`);
+                    const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
                         await update(resumeRef, { imgUrl: imageUrl });
                     }
                 }catch{
