@@ -17,16 +17,14 @@ export default function Resumes () {
         userData && dispatch(fetchUserResumes(userData.uid));
     }, [userData]);
 
-    const items = resumes?.map((item, i) => {
+    return(
+        <HeroHighlightDemo className='flex flex-col h-auto w-[100%] items-center justify-center gap-5 p-10'>
+            <TextGenerateEffect words="YOUR RESUMES" className="pt-20"/>
+        <div className="w-[90%] items-center justify-center flex flex-wrap gap-20">
+            {resumes?.map((item, i) => {
             return(
                 <Card data={item.data} key={i} id={item.id} summary={item.summary} date={item.date}/>
-    )});
-
-    return(
-        <HeroHighlightDemo className='flex flex-col h-auto w-full items-center justify-center gap-5 p-10'>
-        <div className="pt-20 flex items-center justify-center flex-col">
-            <TextGenerateEffect className="text-center" words="View and Edit Your Resumes"/>
-            <Carousel items={items as JSX.Element[]} />
+    )})}
         </div>
         </HeroHighlightDemo>
     )
