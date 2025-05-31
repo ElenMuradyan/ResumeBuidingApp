@@ -36,6 +36,7 @@ export default function Resume () {
                         SocialSection: data.SocialSection as SocialSection,
                         SkillsSection: data.SkillsSection?.skills as string[],
                         theme: data.theme || 'classic',
+                        template: data.template
                     };
                 setResume(resumeInfo as resume);
                 }

@@ -5,7 +5,7 @@ import { themeItems, themes } from "@/lib/constants";
 import React, { useEffect, useState } from "react";
 import { templates } from "@/features/resume/resumeTemplates";
 
-export const ResumePreview = ({ data }: { data: resume, width?: string }) => {
+export const ResumePreview = ({ data }: { data: resume }) => {
   const [ selectedTheme, setSelectedTheme ] = useState<keyof typeof themes>(data.theme || 'classic');
   const [ themeColors, setThemeColors ] = useState<themeItems>(themes[selectedTheme] || themes.classic);
   const [ demo, setDemo ] = useState<React.ReactNode | null>(null);
@@ -21,7 +21,7 @@ export const ResumePreview = ({ data }: { data: resume, width?: string }) => {
   useEffect(() => {
     setDemo(templates({data, theme: themeColors})[data.template]);
   }, [data, themeColors]);
-console.log(data.template);
+console.log('hi');
 
   return demo;
 };
