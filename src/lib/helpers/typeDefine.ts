@@ -1,4 +1,4 @@
-import { education, experience, project } from "@/features/resume/EducationSection/types";
+import { education, experience, project } from "@/features/resume/types";
 
 export function isEducation(item: any): item is education {
     return (

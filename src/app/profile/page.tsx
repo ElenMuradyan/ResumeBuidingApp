@@ -19,13 +19,15 @@ const Profile = () => {
     return (
         <div className="min-h-screen w-full overflow-hidden">
         <HeroHighlightDemo className="flex flex-col md:flex-row items-center justify-center gap-10 p-6 md:p-10">
-            
             <div className="w-full md:w-1/2 flex flex-col items-center justify-center text-center space-y-4">
             {width >= 786 && (
+                <>
+                <h1 className='text-[30px] m-0'>Profile Details</h1>
                 <TextGenerateEffect
                 className="text-[22px] md:text-[25px] leading-relaxed"
                 words="Here you can view and update your personal information — make changes to your name, contact details, experience, and more. Keep your profile up to date to ensure your resume reflects your latest achievements."
                 />
+                </>
             )}
             </div>
 

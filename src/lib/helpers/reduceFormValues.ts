@@ -1,4 +1,3 @@
-import { education, project } from "@/features/resume/EducationSection/types";
 import { FormInstance } from "rc-field-form";
 import { FieldData } from "rc-field-form/lib/interface";
 import { isEducation, isExperoence, isProject } from "./typeDefine";
@@ -45,7 +44,7 @@ export function extractArray<T>(fields: Record<string, any>): T[] {
         const match = key.match(/^(\D+)(\d+)$/);
         if (!match) continue;
 
-        const fieldKey = match[1] as keyof education;
+        const fieldKey = match[1];
         const index = parseInt(match[2]);
 
         if (!result[index]) result[index] = {};

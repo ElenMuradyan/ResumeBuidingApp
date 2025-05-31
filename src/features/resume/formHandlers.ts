@@ -14,13 +14,6 @@ export const handleRealTimeChange = async ({
         try{
             const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}/${level}`);
             await update(resumeRef, data);
-
-            const snapshot = await get(resumeRef);
-            const resume = snapshot.val();
-
-            if(!resume.createdAt){
-                await update(resumeRef, {createdAt: new Date().toLocaleDateString()})
-            }
         }catch (error) {
             console.error("Realtime update error:", error);
         }            

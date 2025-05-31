@@ -71,21 +71,21 @@ const ResumePDF = ({ data, themeColors }: { data: resume, themeColors: themeType
         <Page size="A4" style={styles.page}>
           {/* Header */}
           <View style={styles.row}>
-            {ProfileSection.imgUrl && (
-              <Image src={ProfileSection.imgUrl} style={styles.image} />
+            {ProfileSection?.imgUrl && (
+              <Image src={ProfileSection?.imgUrl} style={styles.image} />
             )}
             <View>
               <Text style={styles.name}>
-                {ProfileSection.firstName} {ProfileSection.lastName}
+                {ProfileSection?.firstName} {ProfileSection?.lastName}
               </Text>
-              <Text>{ProfileSection.profession}</Text>
+              <Text>{ProfileSection?.profession}</Text>
             </View>
           </View>
   
           {/* Summary */}
           <View style={styles.section}>
             <Text style={styles.heading}>Summary</Text>
-            <Text>{ProfileSection.summary}</Text>
+            <Text>{ProfileSection?.summary}</Text>
           </View>
   
           {/* Experience */}

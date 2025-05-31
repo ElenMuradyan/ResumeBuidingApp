@@ -11,12 +11,16 @@ import { onValue, ref } from "firebase/database";
 import { realTimeDb } from "@/services/firebase/firebase";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
 import { education, project, experience } from "@/features/resume/types";
+import { ParamValue } from "next/dist/server/request/params";
+import { param } from "@/types/resumeThemeTypes";
 
 export function TimelineDemo() {
     const [ resume, setResume ] = useState<resume | null>(null);
+    const [ params, setParams ] = useState<param | null>(null);
     const { userData } = useSelector((state: RootState) => state.userProfile.authUserInfo);
     const { resumeId } = useParams();
     const { push } = useRouter();
+
     useEffect(() => {
         if (userData) {
             const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
@@ -32,6 +36,7 @@ export function TimelineDemo() {
                         SocialSection: data.SocialSection as SocialSection,
                         SkillsSection: data.SkillsSection?.skills as string[],
                         theme: data.theme || 'classic',
+                        template: data.template
                     };
                 setResume(resumeInfo as resume);
                 }
@@ -41,10 +46,15 @@ export function TimelineDemo() {
             }        
     }, [userData, resumeId]);
 
+useEffect(() => {
+  setParams({resume, resumeId, uid: userData?.uid, push})
+}, [resume, resumeId, userData?.uid, push]);
 
   return (
     <div className="relative h-[auto] w-full overflow-clip">
-      <Timeline data={data(resume, resumeId, userData?.uid, push)} />
+      {
+        params && <Timeline data={data(params)} />
+      }
     </div>
   );
 }

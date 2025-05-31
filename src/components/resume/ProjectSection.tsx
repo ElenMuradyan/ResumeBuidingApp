@@ -13,7 +13,6 @@ import { formItemStyle, formStyles } from "@/styles/constants";
 import { Input } from "../ui/input";
 import { project } from "@/features/resume/types";
 import { extractArray } from "@/lib/helpers/reduceFormValues";
-import { FIRESTORE_PATH_NAMES } from "@/lib/constants";
 
 const ProjectSection = () => {
     const [ form ] = Form.useForm();
@@ -28,7 +27,7 @@ const ProjectSection = () => {
 
         useEffect(() => {
             if (userData && typeof resumeId === "string") {
-            const resumeRef = ref(realTimeDb, `${FIRESTORE_PATH_NAMES.USERS}/${userData.uid}/${FIRESTORE_PATH_NAMES.RESUMES}/${resumeId}`);
+                const resumeRef = ref(realTimeDb, `users/${userData.uid}/resumes/${resumeId}/ProjectSection`);
                 const unsubscribe = onValue(resumeRef, (snapshot) => {
                   const data = snapshot.val();
                   

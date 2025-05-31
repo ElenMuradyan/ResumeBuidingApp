@@ -5,6 +5,7 @@ import { FieldData } from "rc-field-form/lib/interface";
 import { FormInstance } from "rc-field-form";
 import { Dispatch, SetStateAction } from "react";
 import { addObjects } from "@/lib/constants";
+import { template, templates } from "./resumeTemplates";
 
 export interface HandleRealTimeChangeParams {
     allFields: FieldData[];
@@ -54,6 +55,7 @@ export interface resume {
     SkillsSection: string[],
     theme: keyof typeof themes,
     createdAt: string,
+    template: template,
 }
 
 export type SocialSection = {

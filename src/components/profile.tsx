@@ -17,9 +17,7 @@ export default function ProfileForm () {
         form={form} 
         style={loginFormStyles}
         onFinish={handleEditUserProfile}>
-        <Form.Item
-        label='Profile Image'
-        >
+        <Form.Item>
             <ProfileImageUpload
             handleRemove={handleRemove}
             uploading={uploading} 
