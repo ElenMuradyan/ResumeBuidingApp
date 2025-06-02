@@ -81,7 +81,6 @@ import {
         gap: 12,
         justifyContent: "center",
         marginBottom: 12,
-        // Icons are text placeholders here
       },
       socialLink: {
         color: background,

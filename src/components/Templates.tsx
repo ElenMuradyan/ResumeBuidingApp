@@ -33,12 +33,12 @@ export function LampDemo() {
       </motion.h1>
 
       <div className="w-full mt-10 mb-30 flex justify-center">
-      <div className="flex flex-nowrap gap-10 justify-center items-start max-w-screen-xl w-[100%] overflow-auto custom-scrollbar">
+      <div className="flex flex-wrap gap-10 justify-center items-start max-w-screen-xl w-[100%]">
       {Object.entries(templatesObject).map(([key, val], i) => (
       <div key={i} className="flex flex-col items-center justify-center">
         <h1 className="text-lg font-semibold mb-2">{key}</h1>
         <div
-          className="w-[400px] h-[600px] overflow-hidden rounded-md border border-gray-300 bg-white shadow-md"
+          className="w-[350px] h-[550px] overflow-hidden rounded-md border border-gray-300 bg-white shadow-md"
         >
           {val}
         </div>
